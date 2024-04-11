@@ -1,8 +1,9 @@
 # Java-poo-projeto-final
-# Grupo 6
-## Projeto final de Programação Orientada a Objeto JAVA.
+# Projeto final de Programação Orientada a Objeto JAVA.
+## Grupo 6
 ### Ministrado por Marcelo Collares.
 
+##### Participantes
 * Bernardo Miloski Pereira de Queiroz
 * Douglas tapajóz Lima
 * Felipe Amorim Ferreira Mauriz
