@@ -1,0 +1,50 @@
+package projetofinal;
+
+import clientes.Cliente;
+import conta.Contas;
+import conta.ContaCorrente;
+import conta.ContaPoupanca;
+import funcionarios.Funcionarios;
+import funcionarios.Diretor;
+import funcionarios.Gerente;
+import funcionarios.Presidente;
+import java.util.Scanner;
+
+public class SistemaInterno {
+
+	
+	public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	Cliente c = new Cliente("Jonas","18815618", "123");
+
+	
+	System.out.println("Digite seu usuario ");
+	
+	String usuario = sc.next();
+	int contador =0;
+	while(!usuario.equals(c.getNome())) {
+		System.out.println("Usuario Incorreta ou inexistente \nTente novamente ");
+		contador++;
+		usuario = sc.next();
+	}
+	System.out.println("Digite sua senha ");
+	String senha = sc.next();
+	contador =0;
+	while(!senha.equals(c.getSenha()) && contador <2) {
+		System.out.println("Senha Incorreta \nTente novamente");
+		contador++;
+		senha=sc.next();
+		
+	}
+	System.out.println();
+	if(senha.equals(c.getSenha()) || usuario.equals(c.getNome())) {
+		System.out.println("Seja bem vindo ao Banco Grupo 6");
+		
+	}else {
+		System.out.println("Acesso Negado \nTente Novamente mais tarde");		
+	}
+}
+}
+	
+
+
