@@ -1,10 +1,12 @@
 package principal;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import contas.Conta;
 import contas.ContaCorrente;
 import contas.ContaPoupanca;
+import io.InOutUtils;
 import pessoas.Cliente;
 import pessoas.Diretor;
 import pessoas.Gerente;
@@ -48,5 +50,15 @@ public class SistemaInterno {
         } else {
             System.out.println("CPF ou senha incorretos. Por favor, tente novamente.");
         }
+
+		//	try {
+			//	InOutUtils.escritor("./");
+			//	InOutUtils.leitor("./");
+		//	} catch (IOException e) {
+			//	 TODO Auto-generated catch block
+			//	e.printStackTrace();
+		//	}
+     
+        }
+
     }
-}
