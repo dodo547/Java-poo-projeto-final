@@ -64,18 +64,22 @@ public class SistemaInterno {
         if (funcionarioEncontrado != null) {
             if (funcionarioEncontrado instanceof Diretor) {
             	System.out.println("Olá, " + funcionarioEncontrado.getNome() + "! Seja bem-vindo!");
+            	funcionarioEncontrado.menuDiretor(); // Menu Gerente
             } else if (funcionarioEncontrado instanceof Gerente) {
             	System.out.println("Olá, " + funcionarioEncontrado.getNome() + "! Seja bem-vindo!");
+            	funcionarioEncontrado.menuGerente(); // Menu Gerente
             } else if (funcionarioEncontrado instanceof Presidente) {
             	System.out.println("Olá, " + funcionarioEncontrado.getNome() + "! Seja bem-vindo!");
+            	 funcionarioEncontrado.menuPresidente(); // Menu Presidente
             } else {
-            	System.out.println("Olá, " + funcionarioEncontrado.getNome() + "! Seja bem-vindo!");
+            	
             }
         }
 
         // Caso contrário, é um cliente
         if (clienteEncontrado != null) {
-        	System.out.println("Olá, " + clienteEncontrado.getNome() + "! Seja bem-vindo!");
+            System.out.println("Olá, " + clienteEncontrado.getNome() + "! Seja bem-vindo!");
+            clienteEncontrado.menuCliente(); // Chame o menu do cliente
         }
    }
 }

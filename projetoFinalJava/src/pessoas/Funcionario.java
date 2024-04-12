@@ -40,9 +40,27 @@ public abstract class Funcionario {
         ArrayList<Funcionario> listaFuncionario = new ArrayList<>();
 
         listaFuncionario.add(new Diretor("333333333-12", "5",FuncionariosEnum.DIRETOR ,"Lula"));
-//        listaFuncionario.add(new Presidente("444444444-13", "5", "Presidente", "Jair Bolsonaro"));
-//        listaFuncionario.add(new Gerente("555555555-23", "5", "Gerente", "Dilma", 0));
+        listaFuncionario.add(new Presidente("444444444-13", "5", FuncionariosEnum.PRESIDENTE, "Jair Bolsonaro"));
+        listaFuncionario.add(new Gerente("555555555-23", "5", FuncionariosEnum.GERENTE, "Dilma", 0));
 
         return listaFuncionario;
     }
+
+
+	public void menuPresidente() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void menuDiretor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void menuGerente() {
+		// TODO Auto-generated method stub
+		
+	}
 }

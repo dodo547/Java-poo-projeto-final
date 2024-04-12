@@ -16,5 +16,7 @@ import enums.FuncionariosEnum;
 	public int getAgenciaResponsavel() {
      return agenciaResponsavel;
  }
- 	
+	 public void menuGerente() {
+	        Scanner sc = new Scanner(System.in); 	
 	}
+		}

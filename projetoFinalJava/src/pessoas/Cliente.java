@@ -1,6 +1,7 @@
 package pessoas;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 // Classe Cliente
@@ -46,8 +47,45 @@ import java.util.ArrayList;
     listaClientes.add (new Cliente("123456789-20", "87654321", "Arnold semtempo"));
 return listaClientes;
 
-
 }   
+    public void menuCliente() {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nMenu do Cliente:");
+            System.out.println("1. Movimentações na Conta");
+            System.out.println("   a. Saque");
+            System.out.println("   b. Depósito");
+            System.out.println("   c. Transferência para outra conta");
+            System.out.println("2. Relatórios");
+            System.out.println("   a. Saldo");
+            System.out.println("   b. Relatório de tributação da conta corrente");
+            System.out.println("   c. Relatório de rendimento da poupança");
+            System.out.println("3. Sair");
+
+            System.out.print("Escolha uma opção: ");
+            String escolha = sc.next();
+
+            if (escolha.equals("1a")) {
+                // Chame o método para saque aqui
+            } else if (escolha.equals("1b")) {
+                // Chame o método para depósito aqui
+            } else if (escolha.equals("1c")) {
+                // Chame o método para transferência aqui
+            } else if (escolha.equals("2a")) {
+                // Chame o método para exibir saldo aqui
+            } else if (escolha.equals("2b")) {
+                // Chame o método para relatório de tributação aqui
+            } else if (escolha.equals("2c")) {
+                // Chame o método para relatório de rendimento aqui
+            } else if (escolha.equals("3")) {
+                System.out.println("Saindo do menu...");
+                break;
+            } else {
+                System.out.println("Opção inválida, tente novamente.");
+            }
+        }
+    }
     
 }
     
