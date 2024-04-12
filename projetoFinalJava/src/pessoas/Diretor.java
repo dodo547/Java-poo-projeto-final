@@ -60,7 +60,7 @@ public class Diretor extends Funcionario {
 //		System.out.println("Seja bem vindo ao Banco Grupo 50");
 //		TESTE DE SISTEMA
 	}
-	// TODO Auto-generated constructor stub
+
 	
   
 }
