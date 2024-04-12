@@ -11,5 +11,6 @@
 * Jonas Bastos de Freitas Gomes
 
 ## Ferramentas Utilizadas
-![Static Badge](https://img.shields.io/badge/-ECLIPSE?style=plastic&logoColor=%23ffffff&label=JAVA&labelColor=%230000cf&color=f01707)
+<img align="center" alt="Luiz-Java" height="50" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg">
+
 ![Static Badge](https://img.shields.io/badge/-ECLIPSE?style=plastic&logo=eclipseide&logoColor=%23ffffff&label=ECLIPSE&labelColor=%232C2255&color=%232C2255)
