@@ -1,9 +1,7 @@
 package sistemaInterno;
 
-
 import java.util.ArrayList;
 import java.util.Scanner;
-
 
 public class SistemaInterno {
 
@@ -11,8 +9,6 @@ public class SistemaInterno {
 		super();
 	}
 
-	
-	
     public static void abrirRelatorios() {
     	
     	Scanner sc = new Scanner(System.in);

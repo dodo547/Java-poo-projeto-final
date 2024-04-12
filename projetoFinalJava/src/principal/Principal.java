@@ -81,5 +81,6 @@ public class Principal {
             System.out.println("Olá, " + clienteEncontrado.getNome() + "! Seja bem-vindo!");
             clienteEncontrado.menuCliente(); // Chame o menu do cliente
         }
+        
    }
 }

@@ -46,21 +46,13 @@ public abstract class Funcionario {
         return listaFuncionario;
     }
 
-
 	public void menuPresidente() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
-
-
 	public void menuDiretor() {
 		// TODO Auto-generated method stub
-		
 	}
-
-
 	public void menuGerente() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 }

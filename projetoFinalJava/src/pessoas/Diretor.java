@@ -12,8 +12,9 @@ public class Diretor extends Funcionario {
 			super(cpf, senha, FuncionariosEnum.DIRETOR, nome);
 			
 		}
-		public static void main(String[] args) {
-	       Scanner sc = new Scanner(System.in);
+		 public void menuDiretor() {
+	        Scanner sc = new Scanner(System.in);
+
 	       while (true) {
 	       System.out.println("\nDeseja acessar relatórios?");
 	       System.out.println("1 - Sim");
@@ -36,10 +37,6 @@ public class Diretor extends Funcionario {
 	  }
 	        sc.close();  // Fecha o scanner
 	    }
-		
-		
-	
-	
-		 
+			 
 		}
 	
