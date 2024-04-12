@@ -1,11 +1,12 @@
 package contas;
 
+import enums.ContasEnum;
 
 //Classe ContaCorrente
 public class ContaCorrente extends Conta {
- private String tipo;
+ private ContasEnum tipo;
 
- public ContaCorrente(String cpfTitular, double saldo, int agencia, String tipo) {
+ public ContaCorrente(String cpfTitular, double saldo, int agencia, ContasEnum tipo) {
      super(cpfTitular, saldo, agencia);
      this.tipo = tipo;
  }
