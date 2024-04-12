@@ -10,7 +10,7 @@ import pessoas.Gerente;
 import pessoas.Presidente;
 
 
-public class SistemaInterno {
+public class Principal {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 

@@ -9,7 +9,9 @@ import java.util.Scanner;
     private String cpf;
     private String senha;
     private String nome;
-
+	private double saldo;
+    private double valor;
+    
     public Cliente() {
 		super();
 	}
@@ -67,7 +69,15 @@ return listaClientes;
             String escolha = sc.next();
 
             if (escolha.equals("1a")) {
-                // Chame o método para saque aqui
+            	System.out.println("Digite o valor a ser sacado : ");
+
+                double valor = sc.nextDouble();
+                    if (valor <= this.saldo) {
+                   this.saldo -= valor;
+                   System.out.println("Saque realizado no valor de " +valor);
+                   } else {
+                   System.out.println("Saldo insuficiente!");  }}
+            
             } else if (escolha.equals("1b")) {
                 // Chame o método para depósito aqui
             } else if (escolha.equals("1c")) {

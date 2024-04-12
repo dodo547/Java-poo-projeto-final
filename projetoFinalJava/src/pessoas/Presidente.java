@@ -12,7 +12,7 @@ import enums.FuncionariosEnum;
 	 public Presidente(String cpf, String senha, FuncionariosEnum cargo, String nome) {
 			super(cpf, senha, cargo, nome);
 		}
-	 public void menuPresidente() {
+	 public void menuPresidente() { 
 	        Scanner sc = new Scanner(System.in);
   }
  }
