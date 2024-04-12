@@ -2,24 +2,20 @@ package pessoas;
 
 import java.util.Scanner;
 
+import enums.FuncionariosEnum;
+
 //Classe Diretor
 
 public class Diretor extends Funcionario {
-	
-	
-	     
 		
-		public Diretor() {
-		super();
-		}
-
-		public Diretor(String nome, String cpf, String senha, String cargo) {
-		super(nome, cpf, senha, cargo);
+		public Diretor(String cpf, String senha, FuncionariosEnum cargo, String nome) {
+			super(cpf, senha, FuncionariosEnum.DIRETOR, nome);
+			
 		}
 
 		public static void LoginDiretor() {
 		Scanner sc = new Scanner(System.in);
-		Diretor d = new Diretor("18","18","15", "15");
+		Diretor d = new Diretor("18","18",FuncionariosEnum.DIRETOR, "andre");
 
 		
 		System.out.println("Digite seu usuario ");

@@ -1,22 +1,24 @@
 package pessoas;
 
 import java.util.Scanner;
+import enums.FuncionariosEnum;
 
 //Classe Gerente
 		public class Gerente extends Funcionario {
 		private int agenciaResponsavel;
 
- 	public Gerente(String nome, String cpf, String senha, String cargo, int agenciaResponsavel) {
-     super(nome,cpf, senha, cargo);
-     this.agenciaResponsavel = agenciaResponsavel;
- }
+	
 
- 	public int getAgenciaResponsavel() {
+ 	public Gerente(String cpf, String senha, FuncionariosEnum cargo, String nome,int agenciaResponsavel) {
+			super(cpf, senha, cargo, nome);
+			this.agenciaResponsavel = agenciaResponsavel;
+		}
+	public int getAgenciaResponsavel() {
      return agenciaResponsavel;
  }
  	public static void LoginGerente() {
 		Scanner sc = new Scanner(System.in);
-		Gerente g = new Gerente("18","18","15", "15",1);
+		Gerente g = new Gerente("18","18",FuncionariosEnum.GERENTE, "andre",1);
 
 		
 		System.out.println("Digite seu usuario ");

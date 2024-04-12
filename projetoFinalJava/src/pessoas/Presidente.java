@@ -2,21 +2,20 @@ package pessoas;
 
 import java.util.Scanner;
 
+import enums.FuncionariosEnum;
+
 //Classe Presidente
 
  public class Presidente extends Funcionario {
 
-	public Presidente() {
-		super();
-	}
-
-	public Presidente(String nome, String cpf, String senha, String cargo) {
-		super(nome, cpf, senha, cargo);
-	}
+	
+	 public Presidente(String cpf, String senha, FuncionariosEnum cargo, String nome) {
+			super(cpf, senha, cargo, nome);
+		}
 
 	public static void LoginPresidente() {
 		Scanner sc = new Scanner(System.in);
-		Presidente p = new Presidente("18","18","15", "15");
+		Presidente p = new Presidente("18484","123",FuncionariosEnum.PRESIDENTE, "anderson");
 
 		
 		System.out.println("Digite seu usuario ");

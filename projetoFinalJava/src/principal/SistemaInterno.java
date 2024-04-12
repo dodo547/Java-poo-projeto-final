@@ -21,6 +21,12 @@ public class SistemaInterno {
         // Solicitar o CPF do usuário
         System.out.println("Digite seu usuário (CPF):");
         String cpf = sc.next();
+        int contador =0;
+    	while(!cpf.equals(null)) {
+    		System.out.println("Usuario Incorreta ou inexistente \nTente novamente ");
+    		contador++;
+    		cpf = sc.next();
+    	}
 
         // Procurar o cliente ou funcionário na lista de clientes e funcionários
         Cliente clienteEncontrado = null;
@@ -39,7 +45,7 @@ public class SistemaInterno {
         }
 
         // Verificar se o usuário foi encontrado
-        if (clienteEncontrado == null && funcionarioEncontrado == null) {
+        if (clienteEncontrado == null && funcionarioEncontrado == null ) {
             System.out.println("Usuário incorreto ou inexistente. Tente novamente mais tarde.");
             System.exit(0);
         }

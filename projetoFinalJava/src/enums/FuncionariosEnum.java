@@ -4,5 +4,5 @@ public enum FuncionariosEnum {
 	DIRETOR,
 	GERENTE,
 	ASSISTENTE,
-	PRESIDENTE
+	PRESIDENTE;
 }
