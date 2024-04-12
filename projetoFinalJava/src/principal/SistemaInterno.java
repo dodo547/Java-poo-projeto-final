@@ -21,12 +21,6 @@ public class SistemaInterno {
         // Solicitar o CPF do usuário
         System.out.println("Digite seu usuário (CPF):");
         String cpf = sc.next();
-        int contador =0;
-    	while(!cpf.equals(null)) {
-    		System.out.println("Usuario Incorreta ou inexistente \nTente novamente ");
-    		contador++;
-    		cpf = sc.next();
-    	}
 
         // Procurar o cliente ou funcionário na lista de clientes e funcionários
         Cliente clienteEncontrado = null;
@@ -45,37 +39,43 @@ public class SistemaInterno {
         }
 
         // Verificar se o usuário foi encontrado
-        if (clienteEncontrado == null && funcionarioEncontrado == null ) {
+        if (clienteEncontrado == null && funcionarioEncontrado == null) {
             System.out.println("Usuário incorreto ou inexistente. Tente novamente mais tarde.");
             System.exit(0);
         }
-        // Verificar a senha do usuário
+     // Verificar a senha do usuário
         System.out.println("Digite sua senha:");
         String senha = sc.next();
-        if (clienteEncontrado != null && !clienteEncontrado.getSenha().equals(senha)) {
-            System.out.println("Senha incorreta. Tente novamente mais tarde.");
 
-        } else if (funcionarioEncontrado != null && !funcionarioEncontrado.getSenha().equals(senha)) {
+        boolean senhaCorreta = false;
+
+        if (clienteEncontrado != null) {
+            senhaCorreta = clienteEncontrado.getSenha().equals(senha);
+        } else if (funcionarioEncontrado != null) {
+            senhaCorreta = funcionarioEncontrado.getSenha().equals(senha);
+        }
+
+        if (!senhaCorreta) {
             System.out.println("Senha incorreta. Tente novamente mais tarde.");
-            
-         
-            // Verificar o cargo do funcionário
+            System.exit(0);
+        }
+
+        // Verificar o cargo do funcionário
+        if (funcionarioEncontrado != null) {
             if (funcionarioEncontrado instanceof Diretor) {
-                System.out.println("Olá diretor, Seja bem vindo!");
-
+            	System.out.println("Olá, " + funcionarioEncontrado.getNome() + "! Seja bem-vindo!");
             } else if (funcionarioEncontrado instanceof Gerente) {
-                System.out.println("Olá gerente, Seja bem vindo!");
-
+            	System.out.println("Olá, " + funcionarioEncontrado.getNome() + "! Seja bem-vindo!");
             } else if (funcionarioEncontrado instanceof Presidente) {
-                System.out.println("Olá presidente, Seja bem vindo!");
-            }
-        } else {
-            
-            if (clienteEncontrado != null) {
-               
+            	System.out.println("Olá, " + funcionarioEncontrado.getNome() + "! Seja bem-vindo!");
             } else {
-                
+            	System.out.println("Olá, " + funcionarioEncontrado.getNome() + "! Seja bem-vindo!");
             }
         }
-    }
+
+        // Caso contrário, é um cliente
+        if (clienteEncontrado != null) {
+        	System.out.println("Olá, " + clienteEncontrado.getNome() + "! Seja bem-vindo!");
+        }
+   }
 }
