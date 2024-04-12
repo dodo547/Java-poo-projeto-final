@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import pessoas.Cliente;
+
 public class InOutUtils {
 
     public static void leitor(String path) throws IOException {
@@ -23,10 +25,12 @@ public class InOutUtils {
         buffRead.close();
     }
 
-    public static void escritor(String path) throws IOException {
+    public static void escritor(String path, Cliente cliente) throws IOException {
         BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
         String linha = "";
         Scanner in = new Scanner(System.in);
+        
+        buffWrite.append(cliente.getCpf() + "\n");
         System.out.println("Escreva algo: ");
         linha = in.nextLine();
         buffWrite.append(linha + "\n");

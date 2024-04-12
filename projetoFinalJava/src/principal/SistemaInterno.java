@@ -4,49 +4,72 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import pessoas.Cliente;
-
+import pessoas.Diretor;
+import pessoas.Funcionario;
+import pessoas.Gerente;
+import pessoas.Presidente;
 
 
 public class SistemaInterno {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-	public static void main(String[] args) {
-	    Scanner sc = new Scanner(System.in);
+        // Obter a lista de clientes e funcionários
+        ArrayList<Cliente> listaClientes = Cliente.listaClientes();
+        ArrayList<Funcionario> listaFuncionarios = Funcionario.listaFuncionario();
 
-	    // Obter a lista de clientes
-	    ArrayList<Cliente> listaClientes = Cliente.listaClientes();
+        // Solicitar o CPF do usuário
+        System.out.println("Digite seu usuário (CPF):");
+        String cpf = sc.next();
 
-	    // Solicitar o CPF do usuário
-	    System.out.println("Digite seu usuário (CPF):");
-	    String usuario = sc.next();
+        // Procurar o cliente ou funcionário na lista de clientes e funcionários
+        Cliente clienteEncontrado = null;
+        Funcionario funcionarioEncontrado = null;
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getCpf().equals(cpf)) {
+                clienteEncontrado = cliente;
+                break;
+            }
+        }
+        for (Funcionario funcionario : listaFuncionarios) {
+            if (funcionario.getCpf().equals(cpf)) {
+                funcionarioEncontrado = funcionario;
+                break;
+            }
+        }
 
-	    // Procurar o cliente na lista de clientes
-	    Cliente clienteEncontrado = null;
-	    for (Cliente cliente : listaClientes) {
-	        if (cliente.getCpf().equals(usuario)) {
-	            clienteEncontrado = cliente;
-	            break;
-	        }
-	    }
+        // Verificar se o usuário foi encontrado
+        if (clienteEncontrado == null && funcionarioEncontrado == null) {
+            System.out.println("Usuário incorreto ou inexistente. Tente novamente mais tarde.");
+            System.exit(0);
+        }
+        // Verificar a senha do usuário
+        System.out.println("Digite sua senha:");
+        String senha = sc.next();
+        if (clienteEncontrado != null && !clienteEncontrado.getSenha().equals(senha)) {
+            System.out.println("Senha incorreta. Tente novamente mais tarde.");
 
-	    // Verificar se o usuário foi encontrado
-	    if (clienteEncontrado == null) {
-	        System.out.println("Usuário incorreto ou inexistente. Tente novamente mais tarde.");
-	        System.exit(0);
-	    }
+        } else if (funcionarioEncontrado != null && !funcionarioEncontrado.getSenha().equals(senha)) {
+            System.out.println("Senha incorreta. Tente novamente mais tarde.");
+            
+         
+            // Verificar o cargo do funcionário
+            if (funcionarioEncontrado instanceof Diretor) {
+                System.out.println("Olá diretor, Seja bem vindo!");
 
-	    // Solicitar a senha do usuário
-	    System.out.println("Digite sua senha:");
-	    String senha = sc.next();
+            } else if (funcionarioEncontrado instanceof Gerente) {
+                System.out.println("Olá gerente, Seja bem vindo!");
 
-	    // Verificar a senha do usuário
-	    if (!clienteEncontrado.getSenha().equals(senha)) {
-	        System.out.println("Senha incorreta. Tente novamente mais tarde.");
-	        System.exit(0);
-	    }
-
-	    // Usuário autenticado com sucesso
-	    System.out.println("Seja bem-vindo ao Serra Bank, " + clienteEncontrado.getNome() + "!");
-	    System.out.println("Seja bem-vindo ao Banco Grupo 50!");
-	
-	}
+            } else if (funcionarioEncontrado instanceof Presidente) {
+                System.out.println("Olá presidente, Seja bem vindo!");
+            }
+        } else {
+            
+            if (clienteEncontrado != null) {
+               
+            } else {
+                
+            }
+        }
+    }
 }
