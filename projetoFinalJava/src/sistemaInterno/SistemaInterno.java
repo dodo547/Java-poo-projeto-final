@@ -51,6 +51,11 @@ public class SistemaInterno {
 	}
 	private static void imprimirSaldo() {
 		// TODO Auto-generated method stub
+	}
+
+	public static void relatorioClientesOrdemAlfabetica() {
+		// TODO Auto-generated method stub
+		
 	}	
 
 }

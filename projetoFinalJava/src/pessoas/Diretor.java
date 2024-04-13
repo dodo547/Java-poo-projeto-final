@@ -1,42 +1,59 @@
 package pessoas;
 
 import java.util.Scanner;
-
 import enums.FuncionariosEnum;
 import sistemaInterno.SistemaInterno;
 
-
 public class Diretor extends Funcionario {
+
+    public Diretor(String cpf, String senha, FuncionariosEnum cargo, String nome) {
+        super(cpf, senha, FuncionariosEnum.DIRETOR, nome);
+    }
+
+    public void menuDiretor() {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nMenu do Diretor:");
+            System.out.println("1 - Relatório com informações de clientes em ordem alfabética");
+            System.out.println("2 - Relatórios disponíveis ao Gerente");
+            System.out.println("3 - Sair");
+
+            int escolha = sc.nextInt();
+            sc.nextLine(); // Limpar a entrada
+
+            switch (escolha) {
+                case 1:
+                    // Relatório com informações de clientes em ordem alfabética
+                    SistemaInterno.relatorioClientesOrdemAlfabetica();
+                    break;
+                case 2:
+                    // Acessar os mesmos relatórios disponíveis ao gerente
+                    menuRelatoriosGerente();
+                    break;
+                case 3:
+                    System.out.println("Saindo do menu do Diretor.");
+                    return;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+
+    // Chama os relatórios disponíveis ao gerente
+    private void menuRelatoriosGerente() {
+        SistemaInterno.abrirRelatorios();
+    }
+
+	@Override
+	public void menuGerente() {
+		// TODO Auto-generated method stub
 		
-		public Diretor(String cpf, String senha, FuncionariosEnum cargo, String nome) {
-			super(cpf, senha, FuncionariosEnum.DIRETOR, nome);
-			
-		}
-		 public void menuDiretor() {
-	        Scanner sc = new Scanner(System.in);
+	}
 
-	       while (true) {
-	       System.out.println("\nDeseja acessar relatórios?");
-	       System.out.println("1 - Sim");
-	       System.out.println("2 - Não");
-
-           int escolha = sc.nextInt();
-           if (escolha == 1) {
-	       SistemaInterno.abrirRelatorios();
-	       break;  
-    } 
-           
-           else if (escolha == 2) {
-	       System.out.println("Finalizando o programa.");
-	       break;  
-	       
-   } 
-           else {
-	       System.out.println("Opção inválida. Por favor, tente novamente.");
-	       }
-	  }
-	        sc.close();  // Fecha o scanner
-	    }
-			 
-		}
-	
+	@Override
+	public void menuPresidente() {
+		// TODO Auto-generated method stub
+		
+	}
+}
