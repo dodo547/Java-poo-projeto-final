@@ -33,7 +33,7 @@ public class Diretor extends Funcionario {
                     break;
                 case 3:
                     System.out.println("Saindo do menu do Diretor.");
-                    return;
+                    System.exit(0);
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }

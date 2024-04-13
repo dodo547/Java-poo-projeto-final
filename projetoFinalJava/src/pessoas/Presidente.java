@@ -28,7 +28,7 @@ public class Presidente extends Funcionario {
                     break;
                 case 2:
                     System.out.println("Saindo do menu do Presidente.");
-                    return;
+                    System.exit(0);;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }

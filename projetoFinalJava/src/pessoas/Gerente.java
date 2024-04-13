@@ -23,6 +23,7 @@ public class Gerente extends Funcionario {
             System.out.println("\nMenu do Gerente:");
             System.out.println("1 - Relatórios disponíveis ao gerente");
             System.out.println("2 - Sair");
+            
 
             int escolha = sc.nextInt();
             sc.nextLine(); // Limpar a entrada
@@ -34,7 +35,7 @@ public class Gerente extends Funcionario {
                     break;
                 case 2:
                     System.out.println("Saindo do menu do Gerente.");
-                    return;
+                    System.exit(0);
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }

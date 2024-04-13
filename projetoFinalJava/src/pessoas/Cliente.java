@@ -47,9 +47,9 @@ public class Cliente {
     }
 
     public static void preencherClientes() {
-        adicionarCliente(new Cliente("123456789-10", "123", "Felipe Amorim"));
-        adicionarCliente(new Cliente("234567890-11", "123", "Douglas Tapajóz"));
-        adicionarCliente(new Cliente("345678901-12", "123", "Patrick Lopes"));
+        adicionarCliente(new Cliente("12", "123", "Felipe Amorim"));
+        adicionarCliente(new Cliente("23", "123", "Douglas Tapajóz"));
+        adicionarCliente(new Cliente("34", "123", "Patrick Lopes"));
     }
 
     // Método para obter o HashMap de clientes
@@ -57,6 +57,10 @@ public class Cliente {
         return clientes;
     }
 
+	public static void setClientes(HashMap<String, Cliente> clientes2) {
+		// TODO Auto-generated method stub
+		  
+	}
     // Menu do cliente
     public void menuCliente() {
         Scanner sc = new Scanner(System.in);
@@ -97,7 +101,8 @@ public class Cliente {
                     break;
                 case "3":
                     System.out.println("Saindo do menu...");
-                    return;
+                    System.exit(0);
+//                    return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
@@ -105,8 +110,5 @@ public class Cliente {
         }
     }
 
-	public static void setClientes(HashMap<String, Cliente> clientes2) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }
