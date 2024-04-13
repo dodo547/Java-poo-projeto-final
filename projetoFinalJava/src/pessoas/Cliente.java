@@ -101,6 +101,7 @@ public class Cliente {
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
+            
         }
     }
 
