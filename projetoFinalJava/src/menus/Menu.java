@@ -1,6 +1,6 @@
 package menus;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import pessoas.Cliente;
 import pessoas.Diretor;
@@ -13,68 +13,38 @@ public class Menu {
     public static void menuLogin() {
         Scanner sc = new Scanner(System.in);
 
-        // Obter a lista de clientes e funcionários
-        ArrayList<Cliente> listaClientes = Cliente.listaClientes();
-        ArrayList<Funcionario> listaFuncionarios = Funcionario.listaFuncionario();
+        // Preencha o HashMap de clientes
+        Cliente.preencherClientes();
+
+        // Obtenha o HashMap de clientes
+        HashMap<String, Cliente> clientes = Cliente.getClientes();
 
         // Solicitar o CPF do usuário
         System.out.println("Digite seu usuário (CPF):");
-        String cpf = sc.nextLine();  // Use nextLine para evitar problemas de leitura
+        String cpf = sc.nextLine();
 
-        // Procurar o cliente ou funcionário na lista de clientes e funcionários
-        Cliente clienteEncontrado = null;
-        Funcionario funcionarioEncontrado = null;
-        for (Cliente cliente : listaClientes) {
-            if (cliente.getCpf().equals(cpf)) {
-                clienteEncontrado = cliente;
-                break;
-            }
-        }
-        for (Funcionario funcionario : listaFuncionarios) {
-            if (funcionario.getCpf().equals(cpf)) {
-                funcionarioEncontrado = funcionario;
-                break;
-            }
-        }
+        // Verifique se o CPF está presente no mapa de clientes
+        Cliente clienteEncontrado = clientes.get(cpf);
 
-        // Verificar se o usuário foi encontrado
-        if (clienteEncontrado == null && funcionarioEncontrado == null) {
+        // Verifique se o cliente foi encontrado
+        if (clienteEncontrado == null) {
             System.out.println("Usuário incorreto ou inexistente. Tente novamente mais tarde.");
-            return; // Voltar ao menu ou encerrar
+            return;
         }
 
         // Solicitar a senha do usuário
         System.out.println("Digite sua senha:");
-        String senha = sc.nextLine();  // Use nextLine para evitar problemas de leitura
+        String senha = sc.nextLine();
 
         // Verificar a senha
-        boolean senhaCorreta = false;
-        if (clienteEncontrado != null) {
-            senhaCorreta = clienteEncontrado.getSenha().equals(senha);
-        } else if (funcionarioEncontrado != null) {
-            senhaCorreta = funcionarioEncontrado.getSenha().equals(senha);
-        }
-
-        if (!senhaCorreta) {
+        if (!clienteEncontrado.getSenha().equals(senha)) {
             System.out.println("Senha incorreta. Tente novamente mais tarde.");
-            return; // Voltar ao menu ou encerrar
+            return;
         }
 
-        // Executar o menu apropriado com base no tipo de usuário
-        if (funcionarioEncontrado != null) {
-            System.out.println("Olá, " + funcionarioEncontrado.getNome() + "! Seja bem-vindo!");
-            if (funcionarioEncontrado instanceof Diretor) {
-                funcionarioEncontrado.menuDiretor(); 
-            } else if (funcionarioEncontrado instanceof Gerente) {
-                funcionarioEncontrado.menuGerente();
-            } else if (funcionarioEncontrado instanceof Presidente) {
-                funcionarioEncontrado.menuPresidente();
-            }
-        }
-
-        if (clienteEncontrado != null) {
-            System.out.println("Olá, " + clienteEncontrado.getNome() + "! Seja bem-vindo!");
-            clienteEncontrado.menuCliente();
-        }
+        // Executar o menu do cliente
+        System.out.println("Olá, " + clienteEncontrado.getNome() + "! Seja bem-vindo!");
+        clienteEncontrado.menuCliente();
     }
 }
+//
