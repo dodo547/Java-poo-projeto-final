@@ -3,7 +3,6 @@ package pessoas;
 import java.util.HashMap;
 import java.util.Scanner;
 
-// Classe Cliente
 public class Cliente {
     private String cpf;
     private String senha;
@@ -12,9 +11,8 @@ public class Cliente {
     // HashMap para armazenar os clientes com CPF como chave
     private static HashMap<String, Cliente> clientes = new HashMap<>();
 
-    public Cliente() {
-        super();
-    }
+    // Construtores
+    public Cliente() {}
 
     public Cliente(String cpf, String senha, String nome) {
         this.cpf = cpf;
@@ -35,15 +33,26 @@ public class Cliente {
         return nome;
     }
 
-    // Preenche o HashMap com clientes
-    public static void preencherClientes() {
-        clientes.put("123456789-10", new Cliente("123456789-10", "123", "Felipe Amorim"));
-        clientes.put("234567890-11", new Cliente("234567890-11", "123", "Douglas Tapajóz"));
-        clientes.put("345678901-12", new Cliente("345678901-12", "123", "Patrick Lopes"));
-        // Adicione os demais clientes aqui...
+    // Métodos de manipulação de clientes
+    public static void adicionarCliente(Cliente cliente) {
+        clientes.put(cliente.getCpf(), cliente);
     }
 
-    // Retorna o HashMap de clientes
+    public static Cliente obterClientePorCpf(String cpf) {
+        return clientes.get(cpf);
+    }
+
+    public static void removerClientePorCpf(String cpf) {
+        clientes.remove(cpf);
+    }
+
+    public static void preencherClientes() {
+        adicionarCliente(new Cliente("123456789-10", "123", "Felipe Amorim"));
+        adicionarCliente(new Cliente("234567890-11", "123", "Douglas Tapajóz"));
+        adicionarCliente(new Cliente("345678901-12", "123", "Patrick Lopes"));
+    }
+
+    // Método para obter o HashMap de clientes
     public static HashMap<String, Cliente> getClientes() {
         return clientes;
     }
@@ -69,29 +78,34 @@ public class Cliente {
 
             switch (escolha) {
                 case "1a":
-                    // Chame o método para saque aqui
+                    // Adicione lógica para saque aqui
                     break;
                 case "1b":
-                    // Chame o método para depósito aqui
+                    // Adicione lógica para depósito aqui
                     break;
                 case "1c":
-                    // Chame o método para transferência aqui
+                    // Adicione lógica para transferência aqui
                     break;
                 case "2a":
-                    // Chame o método para exibir saldo aqui
+                    // Adicione lógica para exibir saldo aqui
                     break;
                 case "2b":
-                    // Chame o método para relatório de tributação aqui
+                    // Adicione lógica para relatório de tributação aqui
                     break;
                 case "2c":
-                    // Chame o método para relatório de rendimento aqui
+                    // Adicione lógica para relatório de rendimento aqui
                     break;
                 case "3":
                     System.out.println("Saindo do menu...");
                     return;
                 default:
-                    System.out.println("Opção inválida, tente novamente.");
+                    System.out.println("Opção inválida. Tente novamente.");
             }
         }
     }
+
+	public static void setClientes(HashMap<String, Cliente> clientes2) {
+		// TODO Auto-generated method stub
+		
+	}
 }

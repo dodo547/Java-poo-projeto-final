@@ -3,10 +3,6 @@ package menus;
 import java.util.HashMap;
 import java.util.Scanner;
 import pessoas.Cliente;
-import pessoas.Diretor;
-import pessoas.Funcionario;
-import pessoas.Gerente;
-import pessoas.Presidente;
 
 public class Menu {
 
@@ -28,7 +24,7 @@ public class Menu {
 
         // Verifique se o cliente foi encontrado
         if (clienteEncontrado == null) {
-            System.out.println("Usuário incorreto ou inexistente. Tente novamente mais tarde.");
+            System.out.println("Usuário incorreto ou inexistente. Tente novamente.");
             return;
         }
 
@@ -38,7 +34,7 @@ public class Menu {
 
         // Verificar a senha
         if (!clienteEncontrado.getSenha().equals(senha)) {
-            System.out.println("Senha incorreta. Tente novamente mais tarde.");
+            System.out.println("Senha incorreta. Tente novamente.");
             return;
         }
 
@@ -47,4 +43,3 @@ public class Menu {
         clienteEncontrado.menuCliente();
     }
 }
-//
