@@ -6,7 +6,7 @@ import pessoas.Cliente;
 
 public class InOutUtils {
 
-	String path = "//arquivo/arquivos.txt";
+	String path = "C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Projeto Final poo\\Java-poo-projeto-final\\Java-poo-projeto-final\\projetoFinalJava\\src\\Relatório1";
 	
     // Método para ler clientes de um arquivo
     public static HashMap<String, Cliente> leitor(String path) throws IOException {
@@ -34,22 +34,27 @@ public class InOutUtils {
                     clientes.put(cpf, cliente);
                 }
             }
-        }
+   buffRead.close();      }
         return clientes;
+       
     }
 
     // Método para escrever clientes em um arquivo
-    public static void escritor(String path, HashMap<String, Cliente> clientes) throws IOException {
+    public static  HashMap<String, Cliente> escritor(String path, HashMap<String, Cliente> clientes) throws IOException {
         // Usar o bloco try-with-resources para abrir o arquivo de forma segura
         try (BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path))) {
             // Percorrer todos os clientes e escrever no arquivo
             for (Cliente cliente : clientes.values()) {
                 // Escrever cpf, senha e nome separados por vírgula
-                buffWrite.write(cliente.getCpf() + "," + cliente.getSenha() + "," + cliente.getNome());
+                buffWrite.append(cliente.getCpf() + "," + cliente.getSenha() + "," + cliente.getNome());
                 
                 // Nova linha após cada cliente
                 buffWrite.newLine();
+                
             }
-        }
+     buffWrite.close();   }
+		return clientes;
     }
+
+	
 }

@@ -12,9 +12,11 @@ import pessoas.Presidente;
 
 public class Menu {
 
+	
     public static void menuLogin() {
         Scanner sc = new Scanner(System.in);
-
+        String path = "C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Projeto Final poo\\Java-poo-projeto-final\\Java-poo-projeto-final\\projetoFinalJava\\src\\Relatório1";
+        
         // Preencha o HashMap de clientes e Funcionario
         Cliente.preencherClientes();
         Funcionario.preencherFuncionario();
@@ -22,6 +24,8 @@ public class Menu {
         // Obtenha o HashMap de  clientes e Funcionario
         HashMap<String, Cliente> clientes = Cliente.getClientes();
         HashMap<String, Funcionario> funcionarios = Funcionario.getFuncionario();
+        
+       
 
         // Solicitar o CPF do usuário e Funcionario
         System.out.println("Digite seu usuário (CPF):");
@@ -71,22 +75,22 @@ public class Menu {
         }  
     
  // Caminho para o arquivo de texto com os dados dos clientes
-    String path = "/home/administrador/Documentos/Java-poo-projeto-final/projetoFinalJava/src/arquivo/arquivos.txt";
-     
-    try {
-        // Carregar os clientes do arquivo de texto
-        HashMap<String, Cliente> cliente = InOutUtils.leitor(path);
-        System.out.println("Clientes foram lidos do arquivo com sucesso!");
+   // String path = "/home/administrador/Documentos/Java-poo-projeto-final/projetoFinalJava/src/arquivo/arquivos.txt";
+        try {
+            // Carregar os clientes do arquivo de texto
+            HashMap<String, Cliente> cliente = InOutUtils.leitor(path);
+            System.out.println("Clientes foram lidos do arquivo com sucesso!");
 
-        // Atualize a referência de clientes em Cliente para usar o HashMap carregado
-        Cliente.setClientes(cliente);
+            // Atualize a referência de clientes em Cliente para usar o HashMap carregado
+            Cliente.setClientes(cliente);
+            
+            // Após executar o menu de login, salve os clientes de volta ao arquivo de texto
+            InOutUtils.escritor(path, clientes);
+            System.out.println("Clientes foram salvos no arquivo com sucesso!");
 
-        // Após executar o menu de login, salve os clientes de volta ao arquivo de texto
-        InOutUtils.escritor(path, cliente);
-        System.out.println("Clientes foram salvos no arquivo com sucesso!");
-
-    } catch (IOException e) {
-        System.err.println("Erro ao ler ou salvar os clientes: " + e.getMessage());
-    }
+        } catch (IOException e) {
+            System.err.println("Erro ao ler ou salvar os clientes: " + e.getMessage());
+        }
+    
 }
 }
