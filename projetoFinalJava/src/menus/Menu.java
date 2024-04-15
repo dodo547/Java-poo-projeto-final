@@ -13,9 +13,10 @@ import pessoas.Presidente;
 public class Menu {
 
 	
+
     public static void menuLogin() {
         Scanner sc = new Scanner(System.in);
-        String path = "C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Projeto Final poo\\Java-poo-projeto-final\\Java-poo-projeto-final\\projetoFinalJava\\src\\Relatório1";
+        String path = "//home//administrador//Documentos//Java-poo-projeto-final//projetoFinalJava//src//Relatório1";
         
         // Preencha o HashMap de clientes e Funcionario
         Cliente.preencherClientes();
@@ -92,5 +93,5 @@ public class Menu {
             System.err.println("Erro ao ler ou salvar os clientes: " + e.getMessage());
         }
     
-}
+    }
 }

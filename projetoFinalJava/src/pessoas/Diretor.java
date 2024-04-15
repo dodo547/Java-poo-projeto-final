@@ -1,6 +1,7 @@
 package pessoas;
 
 import java.util.Scanner;
+
 import enums.FuncionariosEnum;
 import sistemaInterno.SistemaInterno;
 

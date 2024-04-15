@@ -3,11 +3,6 @@ package contas;
 import java.util.ArrayList;
 
 import enums.ContasEnum;
-import enums.FuncionariosEnum;
-import pessoas.Diretor;
-import pessoas.Funcionario;
-import pessoas.Gerente;
-import pessoas.Presidente;
 
 //Classe Conta (abstrata)
 

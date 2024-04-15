@@ -6,7 +6,7 @@ import pessoas.Cliente;
 
 public class InOutUtils {
 
-	String path = "C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Projeto Final poo\\Java-poo-projeto-final\\Java-poo-projeto-final\\projetoFinalJava\\src\\Relatório1";
+	String path = "//home//administrador//Documentos//Java-poo-projeto-final//projetoFinalJava//src//Relatório1";
 	
     // Método para ler clientes de um arquivo
     public static HashMap<String, Cliente> leitor(String path) throws IOException {
