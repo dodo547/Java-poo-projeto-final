@@ -16,9 +16,9 @@ public class Diretor extends Funcionario {
 
         while (true) {
             System.out.println("\nMenu do Diretor:");
-            System.out.println("1 - Relatório com informações de clientes em ordem alfabética");
-            System.out.println("2 - Relatórios disponíveis ao Gerente");
-            System.out.println("3 - Sair");
+            System.out.println("1 - Relatório com informações de clientes em ordem alfabética.");
+            System.out.println("2 - Relatórios do sistema interno.");
+            System.out.println("3 - Sair.");
 
             int escolha = sc.nextInt();
             sc.nextLine(); // Limpar a entrada
@@ -30,7 +30,7 @@ public class Diretor extends Funcionario {
                     break;
                 case 2:
                     // Acessar os mesmos relatórios disponíveis ao gerente
-                    menuRelatoriosGerente();
+                    SistemaInterno.abrirRelatorios();
                     break;
                 case 3:
                     System.out.println("Saindo do menu do Diretor.");

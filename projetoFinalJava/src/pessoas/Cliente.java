@@ -3,6 +3,10 @@ package pessoas;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import contas.ContaPoupanca;
+import contas.ContaCorrente;
+import contas.Conta;
+
 public class Cliente {
     private String cpf;
     private String senha;
@@ -68,47 +72,98 @@ public class Cliente {
         while (true) {
             System.out.println("\nMenu do Cliente:");
             System.out.println("1. Movimentações na Conta");
-            System.out.println("   a. Saque");
-            System.out.println("   b. Depósito");
-            System.out.println("   c. Transferência para outra conta");
             System.out.println("2. Relatórios");
-            System.out.println("   a. Saldo");
-            System.out.println("   b. Relatório de tributação da conta corrente");
-            System.out.println("   c. Relatório de rendimento da poupança");
             System.out.println("3. Sair");
 
             System.out.print("Escolha uma opção: ");
             String escolha = sc.next();
-
+        
             switch (escolha) {
-                case "1a":
-                    // Adicione lógica para saque aqui
-                    break;
-                case "1b":
-                    // Adicione lógica para depósito aqui
-                    break;
-                case "1c":
-                    // Adicione lógica para transferência aqui
-                    break;
-                case "2a":
-                    // Adicione lógica para exibir saldo aqui
-                    break;
-                case "2b":
-                    // Adicione lógica para relatório de tributação aqui
-                    break;
-                case "2c":
-                    // Adicione lógica para relatório de rendimento aqui
-                    break;
-                case "3":
-                    System.out.println("Saindo do menu...");
-                    System.exit(0);
-//                    return;
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-            }
-            
+            case "1":
+                movimentacoesNaConta();
+                break;
+            case "2":
+                relatorios();
+                break;
+            case "3":
+                System.out.println("Saindo do menu do cliente...");
+                return; // Sai do método
+            default:
+                System.out.println("Opção inválida. Tente novamente.");
+                break;
         }
     }
+}
 
+// Método para tratar as opções de Movimentações na Conta
+public void movimentacoesNaConta() {
+    Scanner sc = new Scanner(System.in);
 
+    while (true) {
+        System.out.println("\nMovimentações na Conta:");
+        System.out.println("a. Saque");
+        System.out.println("b. Depósito");
+        System.out.println("c. Transferência para outra conta");
+        System.out.println("d. Voltar ao menu anterior");
+
+        System.out.print("Escolha uma opção: ");
+        String escolha = sc.next();
+
+        switch (escolha) {
+            case "a":
+                // Implementar lógica para saque
+                System.out.println("Saque escolhido");
+                break;
+            case "b":
+                // Implementar lógica para depósito
+                System.out.println("Depósito escolhido");
+                break;
+            case "c":
+                // Implementar lógica para transferência
+                System.out.println("Transferência escolhida");
+                break;
+            case "d":
+                // Volta ao menu principal
+                return;
+            default:
+                System.out.println("Opção inválida. Tente novamente.");
+                break;
+        }
+    }
+}
+public void relatorios() {
+    Scanner sc = new Scanner(System.in);
+
+    while (true) {
+        System.out.println("\nRelatótrios da Conta:");
+        System.out.println("a. Relatório de Saldo");
+        System.out.println("b. Relatório de tributação da conta corrente");
+        System.out.println("c. Relatório de Rendimento da poupança");
+        System.out.println("d. Voltar ao menu anterior");
+        
+        System.out.print("Escolha uma opção: ");
+        String escolha = sc.next();
+
+        switch (escolha) {
+            case "a":
+                // Implementar lógica para saque
+                System.out.println("Relatório de Saldo");
+                break;
+            case "b":
+                // Implementar lógica para depósito
+                System.out.println("Relatório de tributação da conta corrente");
+                break;
+            case "c":
+                // Implementar lógica para transferência
+                System.out.println("Relatório de Rendimento da poupança");
+                break;
+            case "d":
+                // Volta ao menu principal
+                return;
+            default:
+                System.out.println("Opção inválida. Tente novamente.");
+                break;
+       		}
+    	}
+ 	}
 }

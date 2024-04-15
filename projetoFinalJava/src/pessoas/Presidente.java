@@ -15,8 +15,10 @@ public class Presidente extends Funcionario {
 
         while (true) {
             System.out.println("\nMenu do Presidente:");
-            System.out.println("1 - Relatórios disponíveis ao presidente");
-            System.out.println("2 - Sair");
+            System.out.println("1 - Relatórios disponíveis ao Presidente.");
+            System.out.println("2 - Relatórios disponíveis ao Diretor.");
+            System.out.println("3 - Relatórios disponíveis ao Gerente.");
+            System.out.println("3 - Sair do menu do Presidente.");
 
             int escolha = sc.nextInt();
             sc.nextLine(); // Limpar a entrada
@@ -27,6 +29,14 @@ public class Presidente extends Funcionario {
                     menuRelatoriosPresidente();
                     break;
                 case 2:
+                    // Acessar os relatórios disponíveis ao DIRETOR
+                	SistemaInterno.relatorioClientesOrdemAlfabetica();
+                    break;
+                case 3:
+                    // Acessar os relatórios disponíveis ao GERENTE
+                    SistemaInterno.abrirRelatorios();
+                    break;
+                case 4:
                     System.out.println("Saindo do menu do Presidente.");
                     System.exit(0);;
                 default:
@@ -37,7 +47,7 @@ public class Presidente extends Funcionario {
 
     // Chama os relatórios disponíveis ao presidente
     private void menuRelatoriosPresidente() {
-        SistemaInterno.abrirRelatorios();
+
     }
 
 	@Override

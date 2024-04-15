@@ -53,12 +53,12 @@ public class Menu {
         // Solicitar a senha do usuário ou funcionario
         System.out.println("Digite sua senha:");
         String senha = sc.nextLine();
-   
+        //TODO fazer a verificação de senha!
       
         
         if (clienteEncontrado != null) {
              senha = clienteEncontrado.getSenha();
-             System.out.println("Bem Vindo "+ clienteEncontrado.getSenha()); 
+//             System.out.println("Bem Vindo "+ clienteEncontrado.getSenha());
              System.out.println("Olá, " + clienteEncontrado.getNome() + "! Seja bem-vindo!");
              clienteEncontrado.menuCliente();
             // Continue com o processamento...

@@ -13,7 +13,7 @@ public class SistemaInterno {
     	
     	Scanner sc = new Scanner(System.in);
     	int escolha = 1;
-    	
+
         System.out.println("Abrindo relatórios...");
         // Verifica a escolha do usuário
         if (escolha == 1) {
@@ -56,6 +56,7 @@ public class SistemaInterno {
 	public static void relatorioClientesOrdemAlfabetica() {
 		// TODO Auto-generated method stub
 		
-	}	
+	}
+
 
 }
