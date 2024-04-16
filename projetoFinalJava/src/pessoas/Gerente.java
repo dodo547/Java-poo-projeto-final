@@ -148,10 +148,13 @@ public class Gerente extends Funcionario {
 		
 	}
 
+<<<<<<< HEAD
 	@Override
 	public void menuCliente() {
 		// TODO Auto-generated method stub
 		
 	}
 	
+=======
+>>>>>>> 6d4363cf6eff444f813bdd0c6187154957043d21
 }

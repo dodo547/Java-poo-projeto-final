@@ -1,13 +1,13 @@
 package pessoas;
 
 import java.util.Scanner;
+
 import enums.FuncionariosEnum;
-import sistemaInterno.SistemaInterno;
 
 public class Presidente extends Funcionario {
 
     public Presidente(String cpf, String senha, FuncionariosEnum cargo, String nome) {
-        super(cpf, senha, cargo, nome);
+        super(cpf, senha, FuncionariosEnum.PRESIDENTE, nome);
     }
 
     public void menuPresidente() {
@@ -16,8 +16,8 @@ public class Presidente extends Funcionario {
         while (true) {
             System.out.println("\nMenu do Presidente:");
             System.out.println("1 - Relatórios disponíveis ao Presidente.");
-            System.out.println("2 - Relatórios disponíveis ao Diretor.");
-            System.out.println("3 - Relatórios disponíveis ao Gerente.");
+            System.out.println("2 - Acessar menu do Diretor.");
+            System.out.println("3 - Acessar menu do Gerente.");
             System.out.println("4 - Sair do menu do Presidente.");
 
             int escolha = sc.nextInt();
@@ -25,30 +25,47 @@ public class Presidente extends Funcionario {
 
             switch (escolha) {
                 case 1:
-                    // Acessar os relatórios disponíveis ao presidente
+                    // Acessar relatórios disponíveis ao presidente
                     menuRelatoriosPresidente();
                     break;
                 case 2:
-                    // Acessar os relatórios disponíveis ao DIRETOR
-                	SistemaInterno.relatorioClientesOrdemAlfabetica();
+                    // Acessar o menu do diretor
+                    acessarMenuDiretor();
                     break;
                 case 3:
-                    // Acessar os relatórios disponíveis ao GERENTE
-                    SistemaInterno.abrirRelatorios();
+                    // Acessar o menu do gerente
+                    acessarMenuGerente();
                     break;
                 case 4:
                     System.out.println("Saindo do menu do Presidente.");
-                    System.exit(0);;
+                    return;
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
         }
     }
 
-    // Chama os relatórios disponíveis ao presidente
+    // Método para acessar relatórios disponíveis ao presidente
     private void menuRelatoriosPresidente() {
+<<<<<<< HEAD
     	SistemaInterno sist= new SistemaInterno();
     	sist.abrirRelatorios();
+=======
+        System.out.println("Acessando relatórios disponíveis ao Presidente.");
+        // Implementar lógica para acessar relatórios disponíveis ao presidente
+    }
+
+    // Método para acessar o menu do Gerente
+    private void acessarMenuGerente() {
+        Gerente gerente = new Gerente(cpf, senha, FuncionariosEnum.GERENTE, nome, 0);
+        gerente.menuGerente();
+    }
+
+    // Método para acessar o menu do Diretor
+    private void acessarMenuDiretor() {
+        Diretor diretor = new Diretor(cpf, senha, FuncionariosEnum.DIRETOR, nome);
+        diretor.menuDiretor();
+>>>>>>> 6d4363cf6eff444f813bdd0c6187154957043d21
     }
 
 	@Override
@@ -62,6 +79,7 @@ public class Presidente extends Funcionario {
 		// TODO Auto-generated method stub
 		
 	}
+<<<<<<< HEAD
 
 	@Override
 	public void menuCliente() {
@@ -69,3 +87,6 @@ public class Presidente extends Funcionario {
 		
 	}
 }
+=======
+}
+>>>>>>> 6d4363cf6eff444f813bdd0c6187154957043d21
