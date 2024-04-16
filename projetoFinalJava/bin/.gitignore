@@ -1,17 +1,6 @@
-<<<<<<< HEAD
-/pessoas/
-/Relatorios/
-/contas/
-/io/
-/menus/
-=======
-/Relatorios/
 /contas/
 /enums/
-/interfaces/
-/io/
 /menus/
 /pessoas/
-/principal/
 /sistemaInterno/
->>>>>>> 6d4363cf6eff444f813bdd0c6187154957043d21
+/principal/
