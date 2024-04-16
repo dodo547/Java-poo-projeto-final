@@ -97,4 +97,5 @@ public class Gerente extends Funcionario {
 		// TODO Auto-generated method stub
 		
 	}
+
 }
