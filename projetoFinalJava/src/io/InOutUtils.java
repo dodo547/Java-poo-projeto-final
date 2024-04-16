@@ -8,12 +8,13 @@ package io;
 
 	public class InOutUtils {
 
-		String path = "C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Projeto Final POO. ATUAL\\Java-poo-projeto-final\\projetoFinalJava\\src\\Relatorios\\ListaClientes";
+		String path = "..//projetoFinalJava/src/Relatorios/ListaClientes";
+		String pathRendimento = "..//projetoFinalJava/src/Relatorios/RendimentoPoupança";
 		
 	    // Método para ler clientes de um arquivo
 		
 		
-	    public static  HashMap<String, Cliente> leitor(String path) throws IOException {
+	    public static  HashMap<String, Cliente> leitorCliente(String path) throws IOException {
 	        HashMap<String, Cliente> clientes = new HashMap<>();
 	        
 	        
@@ -43,7 +44,9 @@ package io;
 	       
 	    }
 
-	    public static void escritor(String path, HashMap<String, Cliente> clientes) throws IOException {
+	    
+	    
+	    public static void escritorCliente(String path, HashMap<String, Cliente> clientes) throws IOException {
 			BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
 			String linha = "";
 			Scanner in = new Scanner(System.in);
@@ -56,5 +59,5 @@ package io;
 	  buffWrite.close();   
 	    }
 	    
-		
-	} 
+	   
+	}

@@ -166,7 +166,7 @@ public void relatorios() {
             	
             	String resultado = SimularRendimentoPoupanca();
             	
-            	try(BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Projeto Final POO. ATUAL\\Java-poo-projeto-final\\projetoFinalJava\\src\\Relatorios\\RendimentoPoupança"))){
+            	try(BufferedWriter writer = new BufferedWriter(new FileWriter("..//projetoFinalJava/src/Relatorios/RendimentoPoupança"))){
                
 				writer.write(resultado);
 				writer.close();

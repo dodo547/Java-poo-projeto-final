@@ -16,7 +16,7 @@ public class Menu {
 
     public static void menuLogin() {
         Scanner sc = new Scanner(System.in);
-        String path = "C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Projeto Final POO. ATUAL\\Java-poo-projeto-final\\projetoFinalJava\\src\\Relatorios\\ListaClientes";
+        String pathClientes = "..//projetoFinalJava/src/Relatorios/ListaClientes";
         
         // Preencha o HashMap de clientes e Funcionario
         Cliente.preencherClientes();
@@ -79,14 +79,14 @@ public class Menu {
    // String path = "/home/administrador/Documentos/Java-poo-projeto-final/projetoFinalJava/src/arquivo/arquivos.txt";
         try {
             // Carregar os clientes do arquivo de texto
-            HashMap<String, Cliente> cliente = InOutUtils.leitor(path);
+            HashMap<String, Cliente> cliente = InOutUtils.leitorCliente(pathClientes);
             System.out.println("Clientes foram lidos do arquivo com sucesso!");
 
             // Atualize a referência de clientes em Cliente para usar o HashMap carregado
             Cliente.setClientes(cliente);
             
             // Após executar o menu de login, salve os clientes de volta ao arquivo de texto
-            InOutUtils.escritor(path, clientes);
+            InOutUtils.escritorCliente(pathClientes, clientes);
             System.out.println("Clientes foram salvos no arquivo com sucesso!");
 
         } catch (IOException e) {
