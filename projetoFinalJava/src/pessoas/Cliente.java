@@ -1,16 +1,24 @@
 package pessoas;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
+
 import java.util.Scanner;
 
 import contas.ContaPoupanca;
+import interfaces.SimularRendimentoPoupanca;
+import io.InOutUtils;
 import contas.ContaCorrente;
 import contas.Conta;
+
 
 public class Cliente {
     private String cpf;
     private String senha;
     private String nome;
+	private int SimularRendimentoPoupanca;
 
     // HashMap para armazenar os clientes com CPF como chave
     private static HashMap<String, Cliente> clientes = new HashMap<>();
@@ -154,8 +162,18 @@ public void relatorios() {
                 System.out.println("Relatório de tributação da conta corrente");
                 break;
             case "c":
-                // Implementar lógica para transferência
-                System.out.println("Relatório de Rendimento da poupança");
+            	//SimularRendimentoPoupanca();
+            	
+            	String resultado = SimularRendimentoPoupanca();
+            	
+            	try(BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Projeto Final POO. ATUAL\\Java-poo-projeto-final\\projetoFinalJava\\src\\Relatorios\\RendimentoPoupança"))){
+               
+				writer.write(resultado);
+				writer.close();
+            	} catch(IOException e) {
+            		e.printStackTrace();
+            	}
+            	
                 break;
             case "d":
                 // Volta ao menu principal
@@ -166,4 +184,36 @@ public void relatorios() {
        		}
     	}
  	}
+
+private String SimularRendimentoPoupanca() {
+	{
+		  
+    	
+    	
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite o valor inicial:");
+        double valorInicial = scanner.nextDouble();
+
+        System.out.println("Digite a quantidade de dias:");
+        int dias = scanner.nextInt();
+
+        double taxaJuros = 0.005; // 0,5% ao mês
+        int meses = dias / 30; // Aproximação para a quantidade de meses
+
+        double valorFinal = valorInicial;
+
+        // Calcula o rendimento para cada mês
+        for (int i = 0; i < meses; i++) {
+            valorFinal += valorFinal * taxaJuros;
+        }
+
+        System.out.printf("O valor após %d dias será de: %.2f\n", dias, valorFinal);
+        
+        String resultado = String.format("Valor inicial: %.2f\nDias: %d\nValor após %d dias: %.2f\n",
+                valorInicial, dias, dias, valorFinal);
+
+        return resultado;
+}
+}
 }

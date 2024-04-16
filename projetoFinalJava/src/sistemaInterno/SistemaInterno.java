@@ -33,7 +33,7 @@ public class SistemaInterno {
                     relatorioTributacao();
                     break;
                 case 3:
-                    simularRendimentoPoupanca();
+                   // simularRendimentoPoupanca();
                     break;
                 default:
                     System.out.println("Opção inválida.");
@@ -43,9 +43,9 @@ public class SistemaInterno {
 
     }
 
-	private static void simularRendimentoPoupanca() {
-		// TODO Auto-generated method stub		
-	}
+	
+
+	
 	private static void relatorioTributacao() {
 		// TODO Auto-generated method stub
 	}
