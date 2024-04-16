@@ -18,7 +18,7 @@ public class Presidente extends Funcionario {
             System.out.println("1 - Relatórios disponíveis ao Presidente.");
             System.out.println("2 - Relatórios disponíveis ao Diretor.");
             System.out.println("3 - Relatórios disponíveis ao Gerente.");
-            System.out.println("3 - Sair do menu do Presidente.");
+            System.out.println("4 - Sair do menu do Presidente.");
 
             int escolha = sc.nextInt();
             sc.nextLine(); // Limpar a entrada

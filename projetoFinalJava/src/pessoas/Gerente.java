@@ -21,9 +21,9 @@ public class Gerente extends Funcionario {
 
         while (true) {
             System.out.println("\nMenu do Gerente:");
-            System.out.println("1 - Movimentações e Informações da Conta");
-            System.out.println("2 - Relatórios");
-            System.out.println("3 - Sair");
+            System.out.println("1 - Movimentações e Informações da Conta.");
+            System.out.println("2 - Relatórios.");
+            System.out.println("3 - Sair.");
 
             int escolha = sc.nextInt();
             sc.nextLine(); // Limpar a entrada

@@ -19,9 +19,9 @@ public class SistemaInterno {
         if (escolha == 1) {
             // Oferece opções de relatórios
             System.out.println("\nEscolha o relatório desejado:");
-            System.out.println("1 - Saldo");
-            System.out.println("2 - Relatório de Tributação da Conta Corrente");
-            System.out.println("3 - Relatório de Rendimento da Poupança");
+            System.out.println("1 - Saldo.");
+            System.out.println("2 - Relatório de Tributação da Conta Corrente.");
+            System.out.println("3 - Relatório de Rendimento da Poupança.");
            
             int opcaoRelatorio = sc.nextInt();
             		
