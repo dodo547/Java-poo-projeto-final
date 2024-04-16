@@ -1,7 +1,10 @@
 package sistemaInterno;
 
-import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
+import pessoas.Cliente;
 
 public class SistemaInterno {
 
@@ -33,7 +36,15 @@ public class SistemaInterno {
                     relatorioTributacao();
                     break;
                 case 3:
-                   // simularRendimentoPoupanca();
+
+                	String resultado = simularRendimentoPoupanca();
+                	try(BufferedWriter writer = new BufferedWriter(new FileWriter("..//projetoFinalJava/src/Relatorios/RendimentoPoupança"))){
+                        
+        				writer.write(resultado);
+        				writer.close();
+                    	} catch(IOException e) {
+                    		e.printStackTrace();
+                    	}
                     break;
                 default:
                     System.out.println("Opção inválida.");
@@ -46,6 +57,35 @@ public class SistemaInterno {
 	
 
 	
+	private static String simularRendimentoPoupanca() {
+		// TODO Auto-generated method stub
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite o valor inicial:");
+        double valorInicial = scanner.nextDouble();
+
+        System.out.println("Digite a quantidade de dias:");
+        int dias = scanner.nextInt();
+
+        double taxaJuros = 0.005; // 0,5% ao mês
+        int meses = dias / 30; // Aproximação para a quantidade de meses
+
+        double valorFinal = valorInicial;
+
+        // Calcula o rendimento para cada mês
+        for (int i = 0; i < meses; i++) {
+            valorFinal += valorFinal * taxaJuros;
+        }
+
+        System.out.printf("O valor após %d dias será de: %.2f\n", dias, valorFinal);
+        
+        String resultado = String.format("Valor inicial: %.2f\nDias: %d\nValor após %d dias: %.2f\n",
+                valorInicial, dias, dias, valorFinal);
+
+        return resultado;
+
+	}
+
 	private static void relatorioTributacao() {
 		// TODO Auto-generated method stub
 	}
