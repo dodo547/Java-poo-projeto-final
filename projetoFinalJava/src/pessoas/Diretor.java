@@ -57,4 +57,10 @@ public class Diretor extends Funcionario {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void menuCliente() {
+		// TODO Auto-generated method stub
+		
+	}
 }

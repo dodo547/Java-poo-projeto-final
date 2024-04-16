@@ -1,5 +1,8 @@
 package pessoas;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import enums.FuncionariosEnum;
 import sistemaInterno.SistemaInterno;
@@ -23,7 +26,9 @@ public class Gerente extends Funcionario {
             System.out.println("\nMenu do Gerente:");
             System.out.println("1 - Movimentações e Informações da Conta.");
             System.out.println("2 - Relatórios.");
-            System.out.println("3 - Sair.");
+            System.out.println("3 - Relatórios de Rendimento da Poupança.");
+            System.out.println("4 - Relatórios do n° de contas na sua agencia.");
+            System.out.println("5 - Sair.");
 
             int escolha = sc.nextInt();
             sc.nextLine(); // Limpar a entrada
@@ -38,6 +43,23 @@ public class Gerente extends Funcionario {
                     menuRelatoriosGerente();
                     break;
                 case 3:
+                    // Acessar os mesmos Simulação do redimento da poupança
+                	String resultado = SimularRendimentoPoupanca();
+                	
+                	try(BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Projeto Final POO. ATUAL\\Java-poo-projeto-final\\projetoFinalJava\\src\\Relatorios\\RendimentoPoupança"))){
+                   
+    				writer.write(resultado);
+    				writer.close();
+                	} catch(IOException e) {
+                		e.printStackTrace();
+                	}
+                    break;
+                case 4:
+                    // Acessar os mesmos relatórios disponíveis ao gerente
+                	//n° de contas na sua agencia.
+                    menuRelatoriosGerente();
+                    break;
+                case 5:
                     System.out.println("Saindo do menu do Gerente.");
                     System.exit(0);
                 default:
@@ -45,7 +67,35 @@ public class Gerente extends Funcionario {
             }
         }
     }
-    public void movimentacaoeInfoConta() {
+    private String SimularRendimentoPoupanca() {
+    	        	
+    	            Scanner scanner = new Scanner(System.in);
+
+    	            System.out.println("Digite o valor inicial:");
+    	            double valorInicial = scanner.nextDouble();
+
+    	            System.out.println("Digite a quantidade de dias:");
+    	            int dias = scanner.nextInt();
+
+    	            double taxaJuros = 0.005; // 0,5% ao mês
+    	            int meses = dias / 30; // Aproximação para a quantidade de meses
+
+    	            double valorFinal = valorInicial;
+
+    	            // Calcula o rendimento para cada mês
+    	            for (int i = 0; i < meses; i++) {
+    	                valorFinal += valorFinal * taxaJuros;
+    	            }
+
+    	            System.out.printf("O valor após %d dias será de: %.2f\n", dias, valorFinal);
+    	            
+    	            String resultado = String.format("Valor inicial: %.2f\nDias: %d\nValor após %d dias: %.2f\n",
+    	                    valorInicial, dias, dias, valorFinal);
+
+    	            return resultado;
+    	    }
+		
+	public void movimentacaoeInfoConta() {
         Scanner sc = new Scanner(System.in);
 
         while (true) {
@@ -97,4 +147,11 @@ public class Gerente extends Funcionario {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void menuCliente() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

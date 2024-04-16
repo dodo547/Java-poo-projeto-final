@@ -4,11 +4,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 import io.InOutUtils;
-import pessoas.Cliente;
+import pessoas.Usuario;
 import pessoas.Funcionario;
 import pessoas.Gerente;
 import pessoas.Diretor;
 import pessoas.Presidente;
+import pessoas.Usuario;
 
 public class Menu {
 
@@ -19,12 +20,12 @@ public class Menu {
         String pathClientes = "..//projetoFinalJava/src/Relatorios/ListaClientes";
         
         // Preencha o HashMap de clientes e Funcionario
-        Cliente.preencherClientes();
-        Funcionario.preencherFuncionario();
+        Usuario.preencherUsuario();
+//        Funcionario.preencherFuncionario();
 
         // Obtenha o HashMap de  clientes e Funcionario
-        HashMap<String, Cliente> clientes = Cliente.getClientes();
-        HashMap<String, Funcionario> funcionarios = Funcionario.getFuncionario();
+        HashMap<String, Usuario> usuario = Usuario.getUsuarios();
+//        HashMap<String, Funcionario> funcionarios = Funcionario.getFuncionario();
         
        
 
@@ -33,18 +34,18 @@ public class Menu {
         String cpf = sc.nextLine();
 
         // Verifique se o CPF está presente no mapa de clientes e e Funcionarios
-        Cliente clienteEncontrado = clientes.get(cpf);
-        Funcionario funcionarioEncontrado = funcionarios.get(cpf);
-        
+        Usuario usuarioEncontrado = usuario.get(cpf);
+//        Funcionario funcionarioEncontrado = funcionarios.get(cpf);
+       
         // Verifique se o cliente ou funcionario foi encontrado
         
-        if (clienteEncontrado != null) {
-        cpf = clienteEncontrado.getCpf();
+       
+        
+        if (usuarioEncontrado != null) {
+        cpf = usuarioEncontrado.getCpf();
            // Continue com o processamento...
-       } 
-        else if (funcionarioEncontrado != null) {
-           cpf = funcionarioEncontrado.getCpf();
-          // Continue com o processamento...
+        
+       
       }else {
            // Trate a condição onde clienteEncontrado é null
            System.out.println("Cliente não encontrado.");
@@ -56,42 +57,43 @@ public class Menu {
         //TODO fazer a verificação de senha!
       
         
-        if (clienteEncontrado != null) {
-             senha = clienteEncontrado.getSenha();
+        if (usuarioEncontrado != null) {
+             senha = usuarioEncontrado.getSenha();
 //             System.out.println("Bem Vindo "+ clienteEncontrado.getSenha());
-             System.out.println("Olá, " + clienteEncontrado.getNome() + "! Seja bem-vindo!");
-             clienteEncontrado.menuCliente();
+             System.out.println("Olá, " + usuarioEncontrado.getNome() + "! Seja bem-vindo!");
+             usuarioEncontrado.menuCliente();
+             usuarioEncontrado.menuGerente();
+             usuarioEncontrado.menuDiretor();
+             usuarioEncontrado.menuPresidente();
             // Continue com o processamento...
         } 
-        else if (funcionarioEncontrado != null) {
-            senha = funcionarioEncontrado.getSenha();
-            System.out.println("Olá, " + funcionarioEncontrado.getNome() + "! Seja bem-vindo!");
-            funcionarioEncontrado.menuGerente();
-            funcionarioEncontrado.menuDiretor(); 
-            funcionarioEncontrado.menuPresidente();
+//        else if (funcionarioEncontrado != null) {
+//            senha = funcionarioEncontrado.getSenha();
+//            System.out.println("Olá, " + funcionarioEncontrado.getNome() + "! Seja bem-vindo!");
+           
             // Continue com o processamento...
-       }else {
+       else {
             // Trate a condição onde clienteEncontrado é null
             System.out.println("Cliente não encontrado.");
         }  
     
  // Caminho para o arquivo de texto com os dados dos clientes
    // String path = "/home/administrador/Documentos/Java-poo-projeto-final/projetoFinalJava/src/arquivo/arquivos.txt";
-        try {
-            // Carregar os clientes do arquivo de texto
-            HashMap<String, Cliente> cliente = InOutUtils.leitorCliente(pathClientes);
-            System.out.println("Clientes foram lidos do arquivo com sucesso!");
-
-            // Atualize a referência de clientes em Cliente para usar o HashMap carregado
-            Cliente.setClientes(cliente);
-            
-            // Após executar o menu de login, salve os clientes de volta ao arquivo de texto
-            InOutUtils.escritorCliente(pathClientes, clientes);
-            System.out.println("Clientes foram salvos no arquivo com sucesso!");
-
-        } catch (IOException e) {
-            System.err.println("Erro ao ler ou salvar os clientes: " + e.getMessage());
-        }
-    
-    }
+//        try {
+//            // Carregar os clientes do arquivo de texto
+//            HashMap<String, Usuario> usuario = InOutUtils.leitorCliente(pathClientes);
+//            System.out.println("Clientes foram lidos do arquivo com sucesso!");
+//
+//            // Atualize a referência de clientes em Cliente para usar o HashMap carregado
+//            Usuario.setClientes(cliente);
+//            
+//            // Após executar o menu de login, salve os clientes de volta ao arquivo de texto
+//            InOutUtils.escritorCliente(pathClientes, clientes);
+//            System.out.println("Clientes foram salvos no arquivo com sucesso!");
+//
+//        } catch (IOException e) {
+//            System.err.println("Erro ao ler ou salvar os clientes: " + e.getMessage());
+//        }
+//    
+}
 }

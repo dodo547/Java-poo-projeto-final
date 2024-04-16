@@ -47,7 +47,8 @@ public class Presidente extends Funcionario {
 
     // Chama os relatórios disponíveis ao presidente
     private void menuRelatoriosPresidente() {
-
+    	SistemaInterno sist= new SistemaInterno();
+    	sist.abrirRelatorios();
     }
 
 	@Override
@@ -58,6 +59,12 @@ public class Presidente extends Funcionario {
 
 	@Override
 	public void menuGerente() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void menuCliente() {
 		// TODO Auto-generated method stub
 		
 	}
