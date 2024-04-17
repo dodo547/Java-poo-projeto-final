@@ -61,25 +61,26 @@ public class Cliente extends Usuario {
 
 			switch (escolha) {
 			case "a":
-			    if (Usuario.getUsuarios() != null && Conta.listaConta() != null) {
-			        ContaCorrente contaCorrente = null;
-			        for (Conta conta : Conta.listaConta()) {
-			            if (conta.getCpfTitular().equals(getCpf())) {
-			                contaCorrente = (ContaCorrente) conta;
-			                break;
-			            }
-			        }
+				if (Usuario.getUsuarios() != null && Conta.listaConta() != null) {
+					ContaCorrente contaCorrente = null;
+					for (Conta conta : Conta.listaConta()) {
+						if (conta.getCpfTitular().equals(getCpf())) {
+							contaCorrente = (ContaCorrente) conta;
+							break;
+						}
+					}
 
-			        if (contaCorrente != null) {
-			            System.out.print("Digite o valor a ser Sacado: ");
-			            double valorSacar = sc.nextDouble();
-			            contaCorrente.sacar(valorSacar);
-			            System.out.println("Saque de " + valorSacar + " realizado com sucesso para o cliente " + getNome());
-			        } else {
-			            System.out.println("Você não possui uma Conta Corrente.");
-			        }
-			    }
-			    break;
+					if (contaCorrente != null) {
+						System.out.print("Digite o valor a ser Sacado: ");
+						double valorSacar = sc.nextDouble();
+						contaCorrente.sacar(valorSacar);
+						System.out.println(
+								"Saque de " + valorSacar + " realizado com sucesso para o cliente " + getNome());
+					} else {
+						System.out.println("Você não possui uma Conta Corrente.");
+					}
+				}
+				break;
 			case "b":
 				if (Usuario.getUsuarios() != null && Conta.listaConta() != null) {
 					System.out.print("Digite o valor a ser depositado: ");
@@ -89,45 +90,45 @@ public class Cliente extends Usuario {
 				}
 				break;
 			case "c":
-			    if (Usuario.getUsuarios() != null && Conta.listaConta() != null) {
-			        ContaCorrente contaCorrenteOrigem = null;
-			        ContaCorrente contaCorrenteDestino = null;
-			        
-			        // Encontrar a conta corrente do usuário logado
-			        for (Conta conta : Conta.listaConta()) {
-			            if (conta.getCpfTitular().equals(getCpf())) {
-			                contaCorrenteOrigem = (ContaCorrente) conta;
-			                break;
-			            }
-			        }
-			        
-			        if (contaCorrenteOrigem != null) {
-			            System.out.print("Digite o CPF do destinatário: ");
-			            String cpfDestinatario = sc.next();
-			            
-			            // Encontrar a conta corrente do destinatário
-			            for (Conta conta : Conta.listaConta()) {
-			                if (conta.getCpfTitular().equals(cpfDestinatario)) {
-			                    contaCorrenteDestino = (ContaCorrente) conta;
-			                    break;
-			                }
-			            }
-			            
-			            if (contaCorrenteDestino != null) {
-			                System.out.print("Digite o valor a ser transferido: ");
-			                double valorTransferencia = sc.nextDouble();
-			                
-			                // Realizar a transferência
-			                contaCorrenteOrigem.transferir(valorTransferencia, contaCorrenteDestino);
-			               
-			            } else {
-			                System.out.println("Conta do destinatário não encontrada.");
-			            }
-			        } else {
-			            System.out.println("Você não possui uma Conta Corrente.");
-			        }
-			    }
-			    break;
+				if (Usuario.getUsuarios() != null && Conta.listaConta() != null) {
+					ContaCorrente contaCorrenteOrigem = null;
+					ContaCorrente contaCorrenteDestino = null;
+
+					// Encontrar a conta corrente do usuário logado
+					for (Conta conta : Conta.listaConta()) {
+						if (conta.getCpfTitular().equals(getCpf())) {
+							contaCorrenteOrigem = (ContaCorrente) conta;
+							break;
+						}
+					}
+
+					if (contaCorrenteOrigem != null) {
+						System.out.print("Digite o CPF do destinatário: ");
+						String cpfDestinatario = sc.next();
+
+						// Encontrar a conta corrente do destinatário
+						for (Conta conta : Conta.listaConta()) {
+							if (conta.getCpfTitular().equals(cpfDestinatario)) {
+								contaCorrenteDestino = (ContaCorrente) conta;
+								break;
+							}
+						}
+
+						if (contaCorrenteDestino != null) {
+							System.out.print("Digite o valor a ser transferido: ");
+							double valorTransferencia = sc.nextDouble();
+
+							// Realizar a transferência
+							contaCorrenteOrigem.transferir(valorTransferencia, contaCorrenteDestino);
+
+						} else {
+							System.out.println("Conta do destinatário não encontrada.");
+						}
+					} else {
+						System.out.println("Você não possui uma Conta Corrente.");
+					}
+				}
+				break;
 			case "d":
 				// Volta ao menu principal
 				return;
@@ -166,8 +167,8 @@ public class Cliente extends Usuario {
 				String resultado = SimularRendimentoPoupanca();
 
 				try (BufferedWriter writer = new BufferedWriter(
-						new FileWriter("..//projetoFinalJava/src/Relatorios/RendimentoPoupança" , true))) {
-					writer.write("\n *********** Simulação de Rendimento da Poupança **********\n");
+						new FileWriter("..//projetoFinalJava/src/Relatorios/RendimentoPoupança", true))) {
+					writer.write("\n **** Simulação de Rendimento da Poupança *****\n");
 					writer.write(resultado);
 					writer.write("\nSimulação de Rendimento para " + getNome() + "\n");
 					writer.close();
