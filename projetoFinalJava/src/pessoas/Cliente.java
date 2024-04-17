@@ -107,39 +107,40 @@ public class Cliente extends Usuario {
 
 		while (true) {
 			System.out.println("\nRelatótrios da Conta:");
-			System.out.println("a. Relatório de Saldo");
-			System.out.println("b. Relatório de tributação da conta corrente");
-			System.out.println("c. Relatório de Rendimento da poupança");
-			System.out.println("d. Voltar ao menu anterior");
+			System.out.println("1. Relatório de Saldo");
+			System.out.println("2. Relatório de tributação da conta corrente");
+			System.out.println("3. Relatório de Rendimento da poupança");
+			System.out.println("4. Voltar ao menu anterior");
 
 			System.out.print("Escolha uma opção: ");
 			String escolha = sc.next();
 
 			switch (escolha) {
-			case "a":
+			case "1":
 				// Implementar lógica para saque
 				System.out.println("Relatório de Saldo");
 				break;
-			case "b":
+			case "2":
 				// Implementar lógica para depósito
 				System.out.println("Relatório de tributação da conta corrente");
 				break;
-			case "c":
+			case "3":
 				// SimularRendimentoPoupanca();
 
 				String resultado = SimularRendimentoPoupanca();
 
 				try (BufferedWriter writer = new BufferedWriter(
-						new FileWriter("..//projetoFinalJava/src/Relatorios/RendimentoPoupança"))) {
-
+						new FileWriter("..//projetoFinalJava/src/Relatorios/RendimentoPoupança" , true))) {
+					writer.write("\n *********** Simulação de Rendimento da Poupança **********\n");
 					writer.write(resultado);
+					writer.write("\nSimulação de Rendimento para " + getNome() + "\n");
 					writer.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 
 				break;
-			case "d":
+			case "4":
 				// Volta ao menu principal
 				return;
 			default:

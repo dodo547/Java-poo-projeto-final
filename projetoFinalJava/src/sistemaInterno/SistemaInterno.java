@@ -1,7 +1,12 @@
 package sistemaInterno;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import pessoas.Gerente;
 
 public class SistemaInterno {
 
@@ -33,7 +38,7 @@ public class SistemaInterno {
                     relatorioTributacao();
                     break;
                 case 3:
-                   // simularRendimentoPoupanca();
+               //
                     break;
                 default:
                     System.out.println("Opção inválida.");

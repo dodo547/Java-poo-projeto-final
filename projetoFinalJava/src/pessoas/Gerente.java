@@ -15,7 +15,9 @@ public class Gerente extends Funcionario {
         this.agenciaResponsavel = agenciaResponsavel;
     }
 
-    public int getAgenciaResponsavel() {
+
+
+	public int getAgenciaResponsavel() {
         return agenciaResponsavel;
     }
 
@@ -46,10 +48,11 @@ public class Gerente extends Funcionario {
                     // Acessar os mesmos Simulação do redimento da poupança
                 	String resultado = SimularRendimentoPoupanca();
                 	
-                	try(BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\patri\\OneDrive\\Área de Trabalho\\Projeto Final POO. ATUAL\\Java-poo-projeto-final\\projetoFinalJava\\src\\Relatorios\\RendimentoPoupança"))){
-                   
-    				writer.write(resultado);
-    				writer.close();
+                	try(BufferedWriter writer = new BufferedWriter(new FileWriter("..//projetoFinalJava/src/Relatorios/RendimentoPoupança", true))){
+                		writer.write("\n *********** Simulação de Rendimento da Poupança **********\n");
+    					writer.write(resultado);
+    					writer.write("\nSimulação de Rendimento para " + getNome() + "\n");
+    					writer.close();
                 	} catch(IOException e) {
                 		e.printStackTrace();
                 	}
@@ -67,6 +70,7 @@ public class Gerente extends Funcionario {
             }
         }
     }
+   
     private String SimularRendimentoPoupanca() {
     	        	
     	            Scanner scanner = new Scanner(System.in);
@@ -133,7 +137,7 @@ public class Gerente extends Funcionario {
 
     // Chama os relatórios disponíveis ao gerente
     private void menuRelatoriosGerente() {
-        SistemaInterno.abrirRelatorios();
+    	
     }
 
 	@Override
