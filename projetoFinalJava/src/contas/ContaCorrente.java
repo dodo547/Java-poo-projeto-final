@@ -43,12 +43,25 @@ public class ContaCorrente extends Conta {
     public void transferir(double valor, ContaCorrente destino) {
         double custoTransferencia = 0.20; // Custo de R$0,20 por transferência
 
-        if (valor > 0 && saldo >= valor + custoTransferencia) {
-            // Retira o valor da conta e desconta o custo da transferência
-            saldo -= (valor + custoTransferencia);
-            custoOperacoes += custoTransferencia; // Atualiza o custo total das operações
-            destino.depositar(valor); // Deposita o valor na conta de destino
+        if (valor <= 0) {
+            System.out.println("Valor inválido para transferência.");
+            return; // Sai do método sem realizar a transferência
         }
+
+        if (saldo < valor + custoTransferencia) {
+            System.out.println("Saldo insuficiente para realizar a transferência.");
+            return; // Sai do método sem realizar a transferência
+        }
+        if (destino.getCpfTitular().equals(this.getCpfTitular())) {
+            System.out.println("Você não pode transferir dinheiro para a mesma conta.");
+            return; // Sai do método sem realizar a transferência
+        }
+
+        // Retira o valor da conta e desconta o custo da transferência
+        saldo -= (valor + custoTransferencia);
+        custoOperacoes += custoTransferencia; // Atualiza o custo total das operações
+        destino.depositar(valor); // Deposita o valor na conta de destino
+        System.out.println("Transferência de " + valor + " realizada com sucesso!" );
     }
 
     // Método para exibir o saldo atual
