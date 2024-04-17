@@ -1,20 +1,34 @@
 package menus;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
-import io.InOutUtils;
-import pessoas.Usuario;
-import pessoas.Funcionario;
-import pessoas.Gerente;
-import pessoas.Diretor;
-import pessoas.Presidente;
+
+import pessoas.Cliente;
 import pessoas.Usuario;
 
 public class Menu {
-
 	
-
+    public static void registrarLogin() {
+    	Scanner sc = new Scanner(System.in);
+    	
+        System.out.println("Digite seu usuário (CPF):");
+        String cpf = sc.nextLine();
+        
+        System.out.println("Digite sua senha:");
+        String senha = sc.nextLine();
+        
+        System.out.println("Digite seu nome:");
+        String nome = sc.nextLine();
+        
+        Usuario novousuario = new Cliente(cpf, senha, nome);
+        
+        Usuario.adicionarUsuario(novousuario);
+        
+        System.out.println("Parabéns você é um novo cliente do Serra bank!");
+        
+        
+    }
+	
     public static void menuLogin() {
         Scanner sc = new Scanner(System.in);
         String pathClientes = "..//projetoFinalJava/src/Relatorios/ListaClientes";
