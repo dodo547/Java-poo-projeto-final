@@ -89,7 +89,7 @@ public abstract class Usuario{
 	public static void preencherUsuario() {
 		adicionarUsuario(new Diretor("1", "2", FuncionariosEnum.DIRETOR, "Lula"));
 		adicionarUsuario(new Presidente("3", "4", FuncionariosEnum.PRESIDENTE, "Jair Bolsonaro"));
-		adicionarUsuario(new Gerente("5", "6", FuncionariosEnum.GERENTE, "Dilma", 0));
+		adicionarUsuario(new Gerente("5", "6", FuncionariosEnum.GERENTE, "Dilma", 125));
 		adicionarUsuario(new Cliente("12", "123", "Felipe Amorim"));
 		adicionarUsuario(new Cliente("23", "123", "Douglas Tapajóz"));
 		adicionarUsuario(new Cliente("34", "123", "Patrick Lopes"));
