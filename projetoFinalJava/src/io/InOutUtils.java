@@ -5,6 +5,7 @@ package io;
 	import java.util.Scanner;
 
 	import pessoas.Cliente;
+import pessoas.Usuario;
 
 	public class InOutUtils {
 
@@ -43,9 +44,19 @@ package io;
 	        return clientes;
 	       
 	    }
-
+	    public static void escritorUsuario(String path, HashMap<String, Usuario> usuarios) throws IOException {
+			BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+			String linha = "";
+			Scanner in = new Scanner(System.in);
+			 for (Usuario usuario : usuarios.values()) {
+	             // Escrever cpf, senha e nome separados por vírgula
+	             buffWrite.append(usuario.getCpf() + "," + usuario.getSenha() + "," + usuario.getNome());
+	             buffWrite.newLine();
+	             
+	         }
+	  buffWrite.close();   
 	    
-	    
+	    }
 	    public static void escritorCliente(String path, HashMap<String, Cliente> clientes) throws IOException {
 			BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
 			String linha = "";

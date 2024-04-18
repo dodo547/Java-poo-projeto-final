@@ -21,6 +21,8 @@ public class Principal {
 		   
 	   switch (escolha) {
        case 1:
+    	   System.out.println("\n*****************************\n");
+    	   System.out.println("***** Menu de Login do Usuário *****\n");
     	   Menu.menuLogin(); 
            
            break;

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import contas.Conta;
 import contas.ContaCorrente;
+import io.InOutUtils;
 
 public class Cliente extends Usuario {
 
@@ -14,7 +15,7 @@ public class Cliente extends Usuario {
 		super(cpf, senha, nome);
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	// Menu do cliente
 	public void menuCliente() {
 		Scanner sc = new Scanner(System.in);
@@ -44,7 +45,7 @@ public class Cliente extends Usuario {
 			}
 		}
 	}
-
+ 
 	// Método para tratar as opções de Movimentações na Conta
 	public void movimentacoesNaConta() {
 		Scanner sc = new Scanner(System.in);
@@ -220,9 +221,10 @@ public class Cliente extends Usuario {
 
 			String resultado = String.format("Valor inicial: %.2f\nDias: %d\nValor após %d dias: %.2f\n", valorInicial,
 					dias, dias, valorFinal);
-
+			
 			return resultado;
 		}
+		//InOutUtils.escritorCliente(getCpf(), null);
 	}
 
 	@Override

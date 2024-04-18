@@ -1,8 +1,10 @@
 package menus;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import io.InOutUtils;
 import pessoas.Cliente;
 import pessoas.Usuario;
 
@@ -24,9 +26,9 @@ public class Menu {
         
         Usuario.adicionarUsuario(novousuario);
         
-        System.out.println("Parabéns você é um novo cliente do Serra bank!");
+        System.out.println("\nParabéns você é um novo cliente do Serra bank!");
         
-        
+        Usuario.setUsuarios(novousuario);
     }
 	
     public static void menuLogin() {
@@ -91,23 +93,23 @@ public class Menu {
             System.out.println("Cliente não encontrado.");
         }  
     
- // Caminho para o arquivo de texto com os dados dos clientes
-   // String path = "/home/administrador/Documentos/Java-poo-projeto-final/projetoFinalJava/src/arquivo/arquivos.txt";
-//        try {
-//            // Carregar os clientes do arquivo de texto
-//            HashMap<String, Usuario> usuario = InOutUtils.leitorCliente(pathClientes);
-//            System.out.println("Clientes foram lidos do arquivo com sucesso!");
-//
-//            // Atualize a referência de clientes em Cliente para usar o HashMap carregado
-//            Usuario.setClientes(cliente);
-//            
-//            // Após executar o menu de login, salve os clientes de volta ao arquivo de texto
-//            InOutUtils.escritorCliente(pathClientes, clientes);
-//            System.out.println("Clientes foram salvos no arquivo com sucesso!");
-//
-//        } catch (IOException e) {
-//            System.err.println("Erro ao ler ou salvar os clientes: " + e.getMessage());
-//        }
-//    
+  //Caminho para o arquivo de texto com os dados dos clientes
+    String path = "..//projetoFinalJava/src/Relatorios/ListaClientes";
+        try {
+            // Carregar os clientes do arquivo de texto
+            HashMap<String, Cliente> usuarios = InOutUtils.leitorCliente(path);
+            System.out.println("Clientes foram lidos do arquivo com sucesso!");
+
+            // Atualize a referência de clientes em Cliente para usar o HashMap carregado
+            Usuario.setUsuarios(usuario);
+            
+            // Após executar o menu de login, salve os clientes de volta ao arquivo de texto
+            InOutUtils.escritorUsuario(path , usuario);
+            System.out.println("Clientes foram salvos no arquivo com sucesso!");
+
+        } catch (IOException e) {
+            System.err.println("Erro ao ler ou salvar os clientes: " + e.getMessage());
+        }
+    
 }
 }

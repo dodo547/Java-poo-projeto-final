@@ -1,11 +1,13 @@
 package pessoas;
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 
 import contas.Conta;
 import contas.ContaCorrente;
 import enums.FuncionariosEnum;
+import io.InOutUtils;
 
 
 public abstract class Usuario {
@@ -55,8 +57,18 @@ public abstract class Usuario {
 
 	public static void setUsuarios(HashMap<String, Usuario> usuarios) {
 		Usuario.usuarios = usuarios;
+		
 	}
 
+	public static void setUsuarios(Usuario usuario) {
+	    // Verifique se o HashMap 'usuarios' já foi inicializado. Se não, inicialize-o.
+	    if (usuarios == null) {
+	        usuarios = new HashMap<String, Usuario>();
+	    }
+	    // Adicione o novo usuário ao HashMap. Use o CPF como chave.
+	    usuarios.put(usuario.getCpf(), usuario);
+	}
+	
 		//  Métodos de manipulação de Funcionario
 		private static HashMap<String, Usuario> usuarios = new HashMap<>();
 		
@@ -81,6 +93,7 @@ public abstract class Usuario {
 	        adicionarUsuario(new Cliente("23", "123", "Douglas Tapajóz"));
 	        adicionarUsuario(new Cliente("34", "123", "Patrick Lopes"));
 	    }
+	  
 
 	    // Método para obter o HashMap de Funcionarios
 	    public static HashMap<String, Usuario> getUsuarios() {
