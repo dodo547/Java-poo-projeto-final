@@ -8,13 +8,13 @@ import enums.ContasEnum;
 //Classe Conta (abstrata)
 
 	public abstract class Conta {
-	private String cpfTitular;
+	protected String cpfTitular;
 	protected double saldo;
-	private int agencia;
-	private double tarifaSaque = 0.10;
-	private double tarifaDeposito = 0.10;
-	private double tarifaTransferencia = 0.20;
-	private String nome;
+	protected int agencia;
+	protected double tarifaSaque = 0.10;
+	protected double tarifaDeposito = 0.10;
+	protected double tarifaTransferencia = 0.20;
+	protected String nome;
 
 	public Conta( String cpfTitular, double saldo, int agencia) {
       this.cpfTitular = cpfTitular;
@@ -59,6 +59,7 @@ import enums.ContasEnum;
          listaConta.add(new ContaCorrente("5", 9000,125,ContasEnum.CONTACORRENTE, 1300));
          listaConta.add(new ContaCorrente("13", 2000, 125,ContasEnum.CONTACORRENTE, 4500));
          listaConta.add(new ContaCorrente("3", 12000, 125,ContasEnum.CONTACORRENTE, 98077));
+         listaConta.add(new ContaCorrente("1", 12000, 125,ContasEnum.CONTACORRENTE, 98077));
          listaConta.add(new ContaPoupanca("555555555-23", 45822, 125,ContasEnum.CONTAPOUPANCA));
          listaConta.add(new ContaPoupanca("666666666-33", 52412, 125,ContasEnum.CONTAPOUPANCA));
          
