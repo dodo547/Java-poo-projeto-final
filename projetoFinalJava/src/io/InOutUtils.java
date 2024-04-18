@@ -1,9 +1,15 @@
 package io;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
+
 import pessoas.Cliente;
 import pessoas.Usuario;
 
@@ -12,11 +18,16 @@ public class InOutUtils {
 	String path = "..//projetoFinalJava/src/Relatorios/ListaClientes";
 	String pathRendimento = "..//projetoFinalJava/src/Relatorios/RendimentoPoupança";
 	String pathTransferencia = "..//projetoFinalJava/src/Relatorios/RelatorioTransferência";
+	private static List<Cliente> ListaClientes;
 
 	// Método para ler clientes de um arquivo
 
+	
+	
+
 	public static HashMap<String, Cliente> leitorCliente(String path) throws IOException {
 		HashMap<String, Cliente> clientes = new HashMap<>();
+		List<Cliente> ListaClientes = new ArrayList<>();
 
 		// Usar o bloco try-with-resources para abrir o arquivo de forma segura
 		try (BufferedReader buffRead = new BufferedReader(new FileReader(path))) {
@@ -37,6 +48,7 @@ public class InOutUtils {
 
 					// Adicionar o cliente ao HashMap
 					clientes.put(cpf, cliente);
+					ListaClientes.add(cliente);
 				}
 			}
 			buffRead.close();
@@ -73,4 +85,6 @@ public class InOutUtils {
 		buffWrite.close();
 
 	}
-}
+	public static List<Cliente> getListaClientes() {
+		return ListaClientes;
+}}

@@ -14,13 +14,16 @@ import enums.ContasEnum;
 	private double tarifaSaque = 0.10;
 	private double tarifaDeposito = 0.10;
 	private double tarifaTransferencia = 0.20;
+	private String nome;
 
-	public Conta(String cpfTitular, double saldo, int agencia) {
+	public Conta( String cpfTitular, double saldo, int agencia) {
       this.cpfTitular = cpfTitular;
       this.saldo = saldo;
       this.agencia = agencia;
+     
  }
-
+	
+	
      public String getCpfTitular() {
      return cpfTitular;
  }
@@ -29,7 +32,15 @@ import enums.ContasEnum;
      return saldo;
  }
 
-     public void setSaldo(double saldo) {
+     public int getAgencia() {
+		return agencia;
+	}
+
+	public void setAgencia(int agencia) {
+		this.agencia = agencia;
+	}
+
+	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
 
@@ -53,6 +64,15 @@ import enums.ContasEnum;
          
          return listaConta;
      }
+     
 
+     public static void adicionarConta(ArrayList<Conta> listaContas, Conta novaConta) {
+     	    if (listaContas == null) {
+     	        System.out.println("Erro na Lista de contas.");
+     	        return;
+     	    }
+     	    
+     	    listaContas.add(novaConta);
+     	}
 	
 }

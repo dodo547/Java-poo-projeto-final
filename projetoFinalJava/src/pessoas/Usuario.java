@@ -10,12 +10,12 @@ import contas.ContaCorrente;
 import enums.FuncionariosEnum;
 import io.InOutUtils;
 
-public abstract class Usuario {
-	private String cpf;
-	private String senha;
-	private String nome;
-	double saldo;
-	public double custoOperacoes = 0;
+public abstract class Usuario{
+	protected String cpf;
+	protected String senha;
+	protected String nome;
+	protected double saldo;
+	protected double custoOperacoes = 0;
 
 	public Usuario(String cpf, String senha, String nome) {
 		super();
@@ -72,7 +72,7 @@ public abstract class Usuario {
 	}
 
 	// Métodos de manipulação de Funcionario
-	private static HashMap<String, Usuario> usuarios = new HashMap<>();
+	public static HashMap<String, Usuario> usuarios = new HashMap<>();
 
 	public static void adicionarUsuario(Usuario usuario) {
 		usuarios.put(usuario.getCpf(), usuario);
@@ -155,7 +155,8 @@ public abstract class Usuario {
 			}
 
 	}
-
+	
+	
 	public abstract void menuCliente();
 
 	public abstract void menuDiretor();
