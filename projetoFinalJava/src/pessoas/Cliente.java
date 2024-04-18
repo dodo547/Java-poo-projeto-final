@@ -15,7 +15,7 @@ public class Cliente extends Usuario {
 		super(cpf, senha, nome);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	// Menu do cliente
 	public void menuCliente() {
 		Scanner sc = new Scanner(System.in);
@@ -45,7 +45,7 @@ public class Cliente extends Usuario {
 			}
 		}
 	}
- 
+
 	// Método para tratar as opções de Movimentações na Conta
 	public void movimentacoesNaConta() {
 		Scanner sc = new Scanner(System.in);
@@ -59,89 +59,93 @@ public class Cliente extends Usuario {
 
 			System.out.print("Escolha uma opção: ");
 			String escolha = sc.next();
-			
-			//Modo de escolha do menu
-			
+
+			// Modo de escolha do menu
+
 			switch (escolha) {
 			case "1":
 				sacar(custoOperacoes);
-                Conta contaSaque = null;
-                ArrayList <Conta>contas = Conta.listaConta() ;
-                for(Conta c : contas) {
-                    if (this.getCpf().equals(c.getCpfTitular())) {
-                        contaSaque = c;
-                    }
-                }
-                if (contaSaque != null) {
-                        System.out.println("\nSaldo disponivel na conta: R$" + contaSaque.getSaldo() + "\n");
-                     System.out.print("Digite o valor a ser Sacado: ");
-                      double valorSacar = sc.nextDouble();
-                      System.out.println("\n");
-                      contaSaque.sacar(valorSacar);
-                      if (valorSacar < 0) {
-  						System.out.println("\nO valor para saque não pode ser negativo. Tente novamente.");
-  						return; // Volta ao menu anterior sem alterar o saldo
-  					} else if (valorSacar > contaSaque.getSaldo()) {
-  						System.out.println("Saldo insuficiente para realizar o saque.");
-  						return; // Volta ao menu anterior sem alterar o saldo
-  					}
-                      System.out.println("Saque de R$" + valorSacar + " realizado com sucesso para o cliente " + getNome());
-                      try (BufferedWriter writer = new BufferedWriter(
-                              new FileWriter("../projetoFinalJava/src/Relatorios/RelatorioSaque" ))) {
-                          writer.write("\n *** Relatório de Saque **\n");
-                          writer.write((int) valorSacar);
-                          writer.write("\nSaque de R$" + valorSacar + " realizado com sucesso para " + getNome() + "\n");
-                          writer.write((int) contaSaque.getSaldo());
-                          writer.write("Saldo disponível R$:" + contaSaque.getSaldo()+ "\n");
-                          writer.close();
-                      } catch (IOException e) {
-                          e.printStackTrace();
-                      }
+				Conta contaSaque = null;
+				ArrayList<Conta> contas = Conta.listaConta();
+				for (Conta c : contas) {
+					if (this.getCpf().equals(c.getCpfTitular())) { // Compara se o CPF é o mesmo do titular
+						contaSaque = c;
+					}
+				}
+				// Verificações de saldo e conta
+				if (contaSaque != null) {
+					System.out.println("\nSaldo disponivel na conta: R$" + contaSaque.getSaldo() + "\n");
+					System.out.print("Digite o valor a ser Sacado: ");
+					double valorSacar = sc.nextDouble();
+					System.out.println("\n");
+					contaSaque.sacar(valorSacar);
+					if (valorSacar < 0) {
+						System.out.println("\nO valor para saque não pode ser negativo. Tente novamente.");
+						return; // Volta ao menu anterior sem alterar o saldo
+					} else if (valorSacar > contaSaque.getSaldo()) {
+						System.out.println("Saldo insuficiente para realizar o saque.");
+						return; // Volta ao menu anterior sem alterar o saldo
+					}
+					System.out
+							.println("Saque de R$" + valorSacar + " realizado com sucesso para o cliente " + getNome());
 
+					// Metodo para escrever o relatorio de saque
+					try (BufferedWriter writer = new BufferedWriter(
+							new FileWriter("../projetoFinalJava/src/Relatorios/RelatorioSaque"))) {
+						writer.write("\n *** Relatório de Saque **\n");
+						writer.write((int) valorSacar);
+						writer.write("\nSaque de R$" + valorSacar + " realizado com sucesso para " + getNome() + "\n");
+						writer.write((int) contaSaque.getSaldo());
+						writer.write("Saldo disponível R$:" + contaSaque.getSaldo() + "\n");
+						writer.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
-                  } else {
-                      System.out.println("Você não possui uma Conta Corrente.");
-                  }
+				} else {
+					System.out.println("Você não possui uma Conta Corrente.");
+				}
 				break;
 			case "2":
 				depositar(custoOperacoes);
-                Conta Depositoconta = null;
-                ArrayList <Conta>Depositocontas = Conta.listaConta() ;
-                for(Conta c : Depositocontas) {
-                    if (this.getCpf().equals(c.getCpfTitular())) {
-                        Depositoconta = c;
-                    }
-                }
-                if (Depositoconta != null) {
-                        System.out.println("Saldo disponivel em conta" + Depositoconta.getSaldo());
-                     System.out.print("Digite o valor a ser Depositado: ");
-                      double valorDepositar = sc.nextDouble();
-                      Depositoconta.depositar(valorDepositar);
-                      if (valorDepositar < 0) {
-  						System.out.println("\nO valor para depósito não pode ser negativo. Tente novamente.");
-  						return; // Volta ao menu anterior sem alterar o saldo
-  					}
+				Conta Depositoconta = null;
+				ArrayList<Conta> Depositocontas = Conta.listaConta();
+				for (Conta c : Depositocontas) {
+					if (this.getCpf().equals(c.getCpfTitular())) { // Compara se o CPF é o mesmo do titular
+						Depositoconta = c;
+					}
+				}
+				if (Depositoconta != null) {
+					System.out.println("Saldo disponivel em conta" + Depositoconta.getSaldo());
+					System.out.print("Digite o valor a ser Depositado: ");
+					double valorDepositar = sc.nextDouble();
+					Depositoconta.depositar(valorDepositar);
+					if (valorDepositar < 0) {
+						System.out.println("\nO valor para depósito não pode ser negativo. Tente novamente.");
+						return; // Volta ao menu anterior sem alterar o saldo
+					}
+					System.out.println(
+							"Deposito de " + valorDepositar + " realizado com sucesso para o cliente " + getNome());
 
-                      //Depositoconta.getSaldo();
-                      System.out.println("Deposito de " + valorDepositar + " realizado com sucesso para o cliente " + getNome());
-                      try (BufferedWriter writer = new BufferedWriter(
-                              new FileWriter("..//projetoFinalJava/src/Relatorios/RelatorioDeposito" , true))) {
-                    	  //valorDepositar += Depositoconta.getSaldo() -0.10;
-                          writer.write("\n *** Comprovante de Depósito **\n");
-                          writer.write((int) valorDepositar);
-                          writer.write("\nDepósito no valor de R$" + valorDepositar + " realizado com sucesso para " + getNome() + "\n");
-                          writer.write((int) valorDepositar);
-                          writer.write("Saldo disponível :" + Depositoconta.getSaldo() + "\n");
-                          writer.close();
-                      } catch (IOException e) {
-                          e.printStackTrace();
-                      }
+					// Metodo para escrever o relatorio de deposito
+					try (BufferedWriter writer = new BufferedWriter(
+							new FileWriter("..//projetoFinalJava/src/Relatorios/RelatorioDeposito", true))) {
 
+						writer.write("\n *** Comprovante de Depósito **\n");
+						writer.write((int) valorDepositar);
+						writer.write("\nDepósito no valor de R$" + valorDepositar + " realizado com sucesso para "
+								+ getNome() + "\n");
+						writer.write((int) valorDepositar);
+						writer.write("Saldo disponível :" + Depositoconta.getSaldo() + "\n");
+						writer.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 
-                  } else {
-                      System.out.println("Você não possui uma Conta Corrente.");
-                  }
-                break;
+				} else {
+					System.out.println("Você não possui uma Conta Corrente.");
+				}
+				break;
 			case "3":
 				Conta contaOrigem = null;
 				ArrayList<Conta> transferenciaContas = Conta.listaConta();
@@ -202,21 +206,20 @@ public class Cliente extends Usuario {
 				// Mensagem de sucesso
 				System.out.printf("Transferência de R$ %.2f para %s realizada com sucesso!%n", valorTransferencia,
 						contaDestino.getCpfTitular());
-				
-				 try (BufferedWriter writer = new BufferedWriter(new FileWriter("..//projetoFinalJava/src/Relatorios/RelatorioTransferência", true))) {
-			            writer.write("\n *** Relatório de Transferência ***\n");
-			            writer.write("Transferência de " + valorTransferencia + " realizada com sucesso para " + contaDestino.getCpfTitular() + "\n");
-			            writer.write("Saldo disponível na conta de origem: " + contaOrigem.getSaldo() + "\n");
-			            writer.write("Saldo disponível na conta de destino: " + contaDestino.getSaldo() + "\n");
-			            writer.close();
-			        } catch  (IOException e) {
-			            e.printStackTrace();
-			            }
+				// Metodo para escrever o relatorio de Transferencias
+				try (BufferedWriter writer = new BufferedWriter(
+						new FileWriter("..//projetoFinalJava/src/Relatorios/RelatorioTransferência", true))) {
+					writer.write("\n *** Relatório de Transferência ***\n");
+					writer.write("Transferência de " + valorTransferencia + " realizada com sucesso para "
+							+ contaDestino.getCpfTitular() + "\n");
+					writer.write("Saldo disponível na conta de origem: " + contaOrigem.getSaldo() + "\n");
+					writer.write("Saldo disponível na conta de destino: " + contaDestino.getSaldo() + "\n");
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 				break;
 
-			
-		
-	
 			case "4":
 				// Volta ao menu principal
 				return;
@@ -227,6 +230,7 @@ public class Cliente extends Usuario {
 		}
 	}
 
+	// Metodo para chamar os relatorios.
 	public void relatorios() {
 		Scanner sc = new Scanner(System.in);
 
@@ -300,13 +304,12 @@ public class Cliente extends Usuario {
 
 			String resultado = String.format("Valor inicial: %.2f\nDias: %d\nValor após %d dias: %.2f\n", valorInicial,
 					dias, dias, valorFinal);
-			
+
 			return resultado;
 		}
-	
+
 	}
 
-	
 	@Override
 	public void menuDiretor() {
 		// TODO Auto-generated method stub

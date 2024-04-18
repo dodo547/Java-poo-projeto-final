@@ -51,14 +51,14 @@ public class Presidente extends Funcionario {
 			case 2:
 				// Acessar os relatórios disponíveis ao DIRETOR
 				Diretor diretor = new Diretor(getCpf(), getSenha(), FuncionariosEnum.DIRETOR, getNome());
-                diretor.menuDiretor();
+				diretor.menuDiretor();
 				break;
 			case 3:
 				// Cria uma instância de Gerente e chama o método menuGerente
-                Gerente gerente = new Gerente(getCpf(), getSenha(), FuncionariosEnum.GERENTE, getNome(), 0);
-                gerente.menuGerente();
-                break;
-				
+				Gerente gerente = new Gerente(getCpf(), getSenha(), FuncionariosEnum.GERENTE, getNome(), 0);
+				gerente.menuGerente();
+				break;
+
 			case 4:
 				System.out.println("Encerrando Operação.");
 				System.exit(0);
@@ -100,6 +100,5 @@ public class Presidente extends Funcionario {
 		// TODO Auto-generated method stub
 
 	}
-
 
 }

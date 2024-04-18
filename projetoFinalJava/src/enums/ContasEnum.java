@@ -1,6 +1,5 @@
 package enums;
 
 public enum ContasEnum {
-	CONTACORRENTE,
-	CONTAPOUPANCA;
+	CONTACORRENTE, CONTAPOUPANCA;
 }

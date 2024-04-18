@@ -7,158 +7,120 @@ import java.util.Scanner;
 
 import contas.ContaCorrente;
 import enums.FuncionariosEnum;
-//import sistemaInterno.SistemaInterno;
 
 public class Gerente extends Funcionario {
-    private int agenciaResponsavel;
+	private int agenciaResponsavel;
 
-    public Gerente(String cpf, String senha, FuncionariosEnum cargo, String nome, int agenciaResponsavel) {
-        super(cpf, senha, cargo, nome);
-        this.agenciaResponsavel = agenciaResponsavel;
-    }
-
-
+	public Gerente(String cpf, String senha, FuncionariosEnum cargo, String nome, int agenciaResponsavel) {
+		super(cpf, senha, cargo, nome);
+		this.agenciaResponsavel = agenciaResponsavel;
+	}
 
 	public int getAgenciaResponsavel() {
-        return agenciaResponsavel;
-    }
+		return agenciaResponsavel;
+	}
 
-    public void menuGerente() {
-        Scanner sc = new Scanner(System.in);
+	public void menuGerente() {
+		Scanner sc = new Scanner(System.in);
 
-        while (true) {
-            System.out.println("\nMenu do Gerente:");
-            System.out.println("1 - Movimentações e Informações da Conta.");
-            System.out.println("2 - Relatórios.");
-            System.out.println("3 - Relatórios de Rendimento da Poupança.");
-            System.out.println("4 - Relatórios do n° de contas na sua agencia.");
-            System.out.println("5 - Sair.");
+		while (true) {
+			System.out.println("\nMenu do Gerente:");
+			System.out.println("1 - Movimentações e Informações da Conta.");
+			System.out.println("2 - Relatórios.");
+			System.out.println("3 - Relatórios de Rendimento da Poupança.");
+			System.out.println("4 - Relatórios do n° de contas na sua agencia.");
+			System.out.println("5 - Sair.");
 
-            int escolha = sc.nextInt();
-            sc.nextLine(); // Limpar a entrada
+			int escolha = sc.nextInt();
+			sc.nextLine(); // Limpar a entrada
 
-            switch (escolha) {
-                case 1:
-                    // Relatório com informações de clientes em ordem alfabética
-                    movimentacaoeInfoConta();
-                    break;
-                case 2:
-                    // Acessar os mesmos relatórios disponíveis ao gerente
-                	ContaCorrente.relatorioTributacao();
-                	System.out.println("teste");
-                    break;
-                case 3:
-                    // Acessar os mesmos Simulação do redimento da poupança
-                	String resultado = SimularRendimentoPoupanca();
-                	
-                	try(BufferedWriter writer = new BufferedWriter(new FileWriter("..//projetoFinalJava/src/Relatorios/RendimentoPoupança", true))){
-                		writer.write("\n *********** Simulação de Rendimento da Poupança **********\n");
-    					writer.write(resultado);
-    					writer.write("\nSimulação de Rendimento para " + getNome() + "\n");
-    					writer.close();
-                	} catch(IOException e) {
-                		e.printStackTrace();
-                	}
-                    break;
-                case 4:
-                    // Acessar os mesmos relatórios disponíveis ao gerente
-                	//n° de contas na sua agencia.
-                    menuRelatoriosGerente();
-                    break;
-                case 5:
-                    System.out.println("Encerrando Operações.");
-                    System.exit(0);
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-            }
-        }
-    }
-   
-    private String SimularRendimentoPoupanca() {
-    	        	
-    	            Scanner scanner = new Scanner(System.in);
+			switch (escolha) {
+			case 1:
+				Cliente cliente = new Cliente(getCpf(), getSenha(), getNome());
+				cliente.movimentacoesNaConta();
+				break;
+			case 2:
+				// Acessar os mesmos relatórios disponíveis ao gerente
+				ContaCorrente.relatorioTributacao();
 
-    	            System.out.println("Digite o valor inicial:");
-    	            double valorInicial = scanner.nextDouble();
+				break;
+			case 3:
+				// Acessar os mesmos Simulação do redimento da poupança
+				String resultado = SimularRendimentoPoupanca();
 
-    	            System.out.println("Digite a quantidade de dias:");
-    	            int dias = scanner.nextInt();
+				try (BufferedWriter writer = new BufferedWriter(
+						new FileWriter("..//projetoFinalJava/src/Relatorios/RendimentoPoupança", true))) {
+					writer.write("\n *********** Simulação de Rendimento da Poupança **********\n");
+					writer.write(resultado);
+					writer.write("\nSimulação de Rendimento para " + getNome() + "\n");
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				break;
+			case 4:
+				// Acessar os mesmos relatórios disponíveis ao gerente
+				// n° de contas na sua agencia.
+				menuRelatoriosGerente();
+				break;
+			case 5:
+				System.out.println("Encerrando Operações.");
+				System.exit(0);
+			default:
+				System.out.println("Opção inválida. Tente novamente.");
+			}
+		}
+	}
 
-    	            double taxaJuros = 0.005; // 0,5% ao mês
-    	            int meses = dias / 30; // Aproximação para a quantidade de meses
+	private String SimularRendimentoPoupanca() {
 
-    	            double valorFinal = valorInicial;
+		Scanner scanner = new Scanner(System.in);
 
-    	            // Calcula o rendimento para cada mês
-    	            for (int i = 0; i < meses; i++) {
-    	                valorFinal += valorFinal * taxaJuros;
-    	            }
+		System.out.println("Digite o valor inicial:");
+		double valorInicial = scanner.nextDouble();
 
-    	            System.out.printf("O valor após %d dias será de: %.2f\n", dias, valorFinal);
-    	            
-    	            String resultado = String.format("Valor inicial: %.2f\nDias: %d\nValor após %d dias: %.2f\n",
-    	                    valorInicial, dias, dias, valorFinal);
+		System.out.println("Digite a quantidade de dias:");
+		int dias = scanner.nextInt();
 
-    	            return resultado;
-    	    }
-		
-	public void movimentacaoeInfoConta() {
-        Scanner sc = new Scanner(System.in);
+		double taxaJuros = 0.005; // 0,5% ao mês
+		int meses = dias / 30; // Aproximação para a quantidade de meses
 
-        while (true) {
-            System.out.println("\nMovimentações e Informações da Conta:");
-            System.out.println("a. Saque.");
-            System.out.println("b. Depósito.");
-            System.out.println("c. Transferência para outra conta.");
-            System.out.println("d. Voltar ao menu anterior.");
-            
-            System.out.print("Escolha uma opção: ");
-            String escolha = sc.next();
+		double valorFinal = valorInicial;
 
-            switch (escolha) {
-                case "a":
-                    // Implementar lógica para saque
-                    System.out.println("Saque escolhido.");
-                    break;
-                case "b":
-                    // Implementar lógica para depósito
-                    System.out.println("Depósito escolhido.");
-                    break;
-                case "c":
-                    // Implementar lógica para transferência
-                    System.out.println("Transferência escolhida.");
-                    break;
-                case "d":
-                    // Volta ao menu principal
-                    return;
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
-                    break;
-           		}
-        	}
-     	}
+		// Calcula o rendimento para cada mês
+		for (int i = 0; i < meses; i++) {
+			valorFinal += valorFinal * taxaJuros;
+		}
 
-    // Chama os relatórios disponíveis ao gerente
-    private void menuRelatoriosGerente() {
-    	
-    }
+		System.out.printf("O valor após %d dias será de: %.2f\n", dias, valorFinal);
+
+		String resultado = String.format("Valor inicial: %.2f\nDias: %d\nValor após %d dias: %.2f\n", valorInicial,
+				dias, dias, valorFinal);
+
+		return resultado;
+	}
+
+	// Chama os relatórios disponíveis ao gerente
+	private void menuRelatoriosGerente() {
+
+	}
 
 	@Override
 	public void menuDiretor() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void menuPresidente() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void menuCliente() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

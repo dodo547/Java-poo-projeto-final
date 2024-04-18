@@ -1,9 +1,6 @@
 package enums;
 
 public enum FuncionariosEnum {
-      
-	  	DIRETOR,
-	  	GERENTE,
-	  	PRESIDENTE,
-	  	FUNCIOANRIO;
+
+	DIRETOR, GERENTE, PRESIDENTE, FUNCIOANRIO;
 }

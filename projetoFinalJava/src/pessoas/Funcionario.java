@@ -9,13 +9,13 @@ import enums.FuncionariosEnum;
 
 public abstract class Funcionario extends Usuario {
 	protected FuncionariosEnum cargo;
-   
-	public Funcionario(String cpf, String senha,FuncionariosEnum cargo, String nome) {
-		super(cpf, senha,nome);
+
+	public Funcionario(String cpf, String senha, FuncionariosEnum cargo, String nome) {
+		super(cpf, senha, nome);
 		// TODO Auto-generated constructor stub
 	}
-    
-    public FuncionariosEnum getCargo() {
-        return cargo;
-    }
+
+	public FuncionariosEnum getCargo() {
+		return cargo;
+	}
 }
