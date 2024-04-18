@@ -1,6 +1,9 @@
 package pessoas;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import contas.Conta;
 import contas.ContaCorrente;
 import enums.FuncionariosEnum;
 
@@ -18,7 +21,7 @@ public abstract class Usuario {
 		this.cpf = cpf;
 		this.senha = senha;
 		this.nome = nome;
-		this.saldo = saldo;
+		//this.saldo = saldo;
 	}
 	public String getCpf() {
 		return cpf;
@@ -40,7 +43,7 @@ public abstract class Usuario {
 		this.nome = nome;
 	}
 
-	public double getSaldo() {
+	public double getSaldo(String string) {
 		return saldo;
 	}
 
@@ -87,7 +90,7 @@ public abstract class Usuario {
 	    public void depositar(double valor) {
 	        double custoDeposito = 0.10; // Custo de R$0,10 por depósito
 	        if (valor > 0) {
-	            saldo += (valor - custoDeposito);
+	            saldo += valor + custoDeposito;
 	            custoOperacoes += custoDeposito;
 	        }
 	    }
@@ -96,14 +99,15 @@ public abstract class Usuario {
 	        double custoSaque = 0.10; // Custo de R$0,10 por saque
 	        
 			if (valor > 0 && saldo >= valor + custoSaque) {
-	            saldo -= (valor + custoSaque);
+	            saldo -= valor - custoSaque;
 	            custoOperacoes += custoSaque;
 	        } else {
-	            System.out.println("\nSaldo Insuficiente!!. \nOperaçao Cancelada");
+	           // System.out.println("\nSaldo Insuficiente!!. \nOperaçao Cancelada");
 	        }
 	    }
 
 	    public void transferir(double valor, ContaCorrente destino) {
+	    	//TODO conferir metodo abaixo
 	        double custoTransferencia = 0.20; // Custo de R$0,20 por transferência
 	        if (valor <= 0) {
 	            System.out.println("Valor inválido para transferência.");
@@ -117,6 +121,7 @@ public abstract class Usuario {
 	            System.out.println("Você não pode transferir dinheiro para a mesma conta.");
 	            return;
 	        }
+	      
 	        saldo -= (valor + custoTransferencia);
 	        custoOperacoes += custoTransferencia;
 	        destino.depositar(valor);
@@ -124,11 +129,30 @@ public abstract class Usuario {
 	    }
 
 
+		
 		public void exibirSaldo() {
-	        System.out.printf("Saldo atual: R$%.2f%n", saldo);
+			
+			//Conta c = new Conta();
+			
+			ArrayList<Conta> listaConta1 = Conta.listaConta();
+			for (Conta conta : listaConta1)
+				if (conta.getCpfTitular().equals(cpf)) {
+					System.out.println("\n*****************************************");
+					System.out.println("\nSaldo disponível de: R$" + conta.getSaldo() + "\n");
+					System.out.println("*****************************************");
+					break;
+				}
+			
+			
+			
+			//System.out.println("Saldo de : " + ContaCorrente.listaConta(getSaldo(getCpf())));
+			//System.out.println("Saldo de : " +getSaldo(getCpf()));
+	        //System.out.println(ContaCorrente.listaConta().equals(getCpf()));
 	    }
 
-	    public abstract void menuCliente();
+	    
+	    
+		public abstract void menuCliente();
 
 	    public abstract void menuDiretor();
 

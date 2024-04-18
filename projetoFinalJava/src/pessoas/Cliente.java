@@ -51,38 +51,41 @@ public class Cliente extends Usuario {
 
 		while (true) {
 			System.out.println("\nMovimentações na Conta:");
-			System.out.println("a. Saque");
-			System.out.println("b. Depósito");
-			System.out.println("c. Transferência para outra conta");
-			System.out.println("d. Voltar ao menu anterior");
+			System.out.println("1. Saque");
+			System.out.println("2. Depósito");
+			System.out.println("3. Transferência para outra conta");
+			System.out.println("4. Voltar ao menu anterior");
 
 			System.out.print("Escolha uma opção: ");
 			String escolha = sc.next();
-
+			
+			//Modo de escolha do menu
+			
 			switch (escolha) {
-			case "a":
+			case "1":
 				sacar(custoOperacoes);
-                Conta conta = null;
+                Conta contaSaque = null;
                 ArrayList <Conta>contas = Conta.listaConta() ;
                 for(Conta c : contas) {
                     if (this.getCpf().equals(c.getCpfTitular())) {
-                        conta = c;
+                        contaSaque = c;
                     }
                 }
-                if (conta != null) {
-                        System.out.println( conta.getSaldo());
+                if (contaSaque != null) {
+                        System.out.println("\nSaldo disponivel na conta: R$" + contaSaque.getSaldo() + "\n");
                      System.out.print("Digite o valor a ser Sacado: ");
                       double valorSacar = sc.nextDouble();
-                      conta.sacar(valorSacar);
-                      conta.getSaldo();
-                      System.out.println("Saque de " + valorSacar + " realizado com sucesso para o cliente " + getNome());
+                      System.out.println("\n");
+                      contaSaque.sacar(valorSacar);
+                      //contaSaque.getSaldo();
+                      System.out.println("Saque de R$" + valorSacar + " realizado com sucesso para o cliente " + getNome());
                       try (BufferedWriter writer = new BufferedWriter(
-                              new FileWriter("../projetoFinalJava/src/Relatorios/RelatorioSaque" , true))) {
+                              new FileWriter("../projetoFinalJava/src/Relatorios/RelatorioSaque" ))) {
                           writer.write("\n *** Relatório de Saque **\n");
                           writer.write((int) valorSacar);
-                          writer.write("\nSaque de " + valorSacar + " realizado com sucesso para " + getNome() + "\n");
-                          writer.write((int) conta.getSaldo());
-                          writer.write("Saldo disponível :" + conta.getSaldo());
+                          writer.write("\nSaque de R$" + valorSacar + " realizado com sucesso para " + getNome() + "\n");
+                          writer.write((int) contaSaque.getSaldo());
+                          writer.write("Saldo disponível R$:" + contaSaque.getSaldo()+ "\n");
                           writer.close();
                       } catch (IOException e) {
                           e.printStackTrace();
@@ -93,7 +96,7 @@ public class Cliente extends Usuario {
                       System.out.println("Você não possui uma Conta Corrente.");
                   }
 				break;
-			case "b":
+			case "2":
 				depositar(custoOperacoes);
                 Conta Depositoconta = null;
                 ArrayList <Conta>Depositocontas = Conta.listaConta() ;
@@ -103,19 +106,20 @@ public class Cliente extends Usuario {
                     }
                 }
                 if (Depositoconta != null) {
-                        System.out.println( Depositoconta.getSaldo());
+                        System.out.println("Saldo disponivel em conta" + Depositoconta.getSaldo());
                      System.out.print("Digite o valor a ser Depositado: ");
-                      double valorSacar = sc.nextDouble();
-                      Depositoconta.sacar(valorSacar);
-                      Depositoconta.getSaldo();
-                      System.out.println("Deposito de " + valorSacar + " realizado com sucesso para o cliente " + getNome());
+                      double valorDepositar = sc.nextDouble();
+                      Depositoconta.depositar(valorDepositar);
+                      //Depositoconta.getSaldo();
+                      System.out.println("Deposito de " + valorDepositar + " realizado com sucesso para o cliente " + getNome());
                       try (BufferedWriter writer = new BufferedWriter(
-                              new FileWriter("../projetoFinalJava/src/Relatorios/RelatorioSaque" , true))) {
-                          writer.write("\n *** Relatório de Saque **\n");
-                          writer.write((int) valorSacar);
-                          writer.write("\nSaque de " + valorSacar + " realizado com sucesso para " + getNome() + "\n");
-                          writer.write((int) Depositoconta.getSaldo());
-                          writer.write("Saldo disponível :" + Depositoconta.getSaldo());
+                              new FileWriter("..//projetoFinalJava/src/Relatorios/RelatorioDeposito" , true))) {
+                    	  //valorDepositar += Depositoconta.getSaldo() -0.10;
+                          writer.write("\n *** Comprovante de Depósito **\n");
+                          writer.write((int) valorDepositar);
+                          writer.write("\nDepósito no valor de R$" + valorDepositar + " realizado com sucesso para " + getNome() + "\n");
+                          writer.write((int) valorDepositar);
+                          writer.write("Saldo disponível :" + Depositoconta.getSaldo() + "\n");
                           writer.close();
                       } catch (IOException e) {
                           e.printStackTrace();
@@ -125,39 +129,15 @@ public class Cliente extends Usuario {
                   } else {
                       System.out.println("Você não possui uma Conta Corrente.");
                   }
-//			case "c":
-//				sacar(custoOperacoes);
-//                Conta conta = null;
-//                ArrayList <Conta>contas = Conta.listaConta() ;
-//                for(Conta c : contas) {
-//                    if (this.getCpf().equals(c.getCpfTitular())) {
-//                        conta = c;
-//                    }
-//                }
-//                if (conta != null) {
-//                        System.out.println( conta.getSaldo());
-//                     System.out.print("Digite o valor a ser Sacado: ");
-//                      double valorSacar = sc.nextDouble();
-//                      conta.sacar(valorSacar);
-//                      conta.getSaldo();
-//                      System.out.println("Saque de " + valorSacar + " realizado com sucesso para o cliente " + getNome());
-//                      try (BufferedWriter writer = new BufferedWriter(
-//                              new FileWriter("../projetoFinalJava/src/Relatorios/RelatorioSaque" , true))) {
-//                          writer.write("\n *** Relatório de Saque **\n");
-//                          writer.write((int) valorSacar);
-//                          writer.write("\nSaque de " + valorSacar + " realizado com sucesso para " + getNome() + "\n");
-//                          writer.write((int) conta.getSaldo());
-//                          writer.write("Saldo disponível :" + conta.getSaldo());
-//                          writer.close();
-//                      } catch (IOException e) {
-//                          e.printStackTrace();
-//                      }
-//
-//
-//                  } else {
-//                      System.out.println("Você não possui uma Conta Corrente.");
-//                  }
-			case "d":
+                break;
+			case "3":
+				System.out.println("Digite o valor a ser transferido: R$");
+				double valor = sc.nextDouble();
+				//TODO conferir linha inferior
+				ContaCorrente destino = new ContaCorrente(escolha, valor, 0, null, valor);
+				transferir(valor,destino);
+				
+			case "4":
 				// Volta ao menu principal
 				return;
 			default:
@@ -183,7 +163,7 @@ public class Cliente extends Usuario {
 			switch (escolha) {
 			case "1":
 				// Implementar lógica para saque
-				System.out.println("Relatório de Saldo");
+				exibirSaldo();
 				break;
 			case "2":
 				// Implementar lógica para depósito

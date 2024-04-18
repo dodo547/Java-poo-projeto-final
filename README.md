@@ -4,7 +4,7 @@
 ### Ministrado por Marcelo Collares.
 
 ##### Participantes
-* Bernardo Miloski Pereira de Queiroz
+
 * Douglas tapajóz Lima
 * Felipe Amorim Ferreira Mauriz
 * Patrick dos Santos Lopes

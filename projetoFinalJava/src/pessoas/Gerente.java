@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+import contas.ContaCorrente;
 import enums.FuncionariosEnum;
 //import sistemaInterno.SistemaInterno;
 
@@ -42,7 +44,8 @@ public class Gerente extends Funcionario {
                     break;
                 case 2:
                     // Acessar os mesmos relatórios disponíveis ao gerente
-                    menuRelatoriosGerente();
+                	ContaCorrente.relatorioTributacao();
+                	System.out.println("teste");
                     break;
                 case 3:
                     // Acessar os mesmos Simulação do redimento da poupança
