@@ -11,6 +11,7 @@ public class ContaCorrente extends Conta {
     public ContaCorrente(String cpfTitular, double saldo, int agencia, ContasEnum tipo, double saldoInicial) {
         super(cpfTitular, saldo, agencia);
         this.tipo = tipo;
+        this.getSaldo();
         ContaCorrente.custoOperacoes = 0.0;
     }
 

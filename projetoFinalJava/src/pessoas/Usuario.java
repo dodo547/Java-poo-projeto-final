@@ -162,8 +162,10 @@ public abstract class Usuario {
 			//System.out.println("Saldo de : " +getSaldo(getCpf()));
 	        //System.out.println(ContaCorrente.listaConta().equals(getCpf()));
 	    }
+		
 
-	    
+
+		
 	    
 		public abstract void menuCliente();
 

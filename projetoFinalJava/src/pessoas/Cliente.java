@@ -78,7 +78,13 @@ public class Cliente extends Usuario {
                       double valorSacar = sc.nextDouble();
                       System.out.println("\n");
                       contaSaque.sacar(valorSacar);
-                      //contaSaque.getSaldo();
+                      if (valorSacar < 0) {
+  						System.out.println("\nO valor para saque não pode ser negativo. Tente novamente.");
+  						return; // Volta ao menu anterior sem alterar o saldo
+  					} else if (valorSacar > contaSaque.getSaldo()) {
+  						System.out.println("Saldo insuficiente para realizar o saque.");
+  						return; // Volta ao menu anterior sem alterar o saldo
+  					}
                       System.out.println("Saque de R$" + valorSacar + " realizado com sucesso para o cliente " + getNome());
                       try (BufferedWriter writer = new BufferedWriter(
                               new FileWriter("../projetoFinalJava/src/Relatorios/RelatorioSaque" ))) {
@@ -111,6 +117,11 @@ public class Cliente extends Usuario {
                      System.out.print("Digite o valor a ser Depositado: ");
                       double valorDepositar = sc.nextDouble();
                       Depositoconta.depositar(valorDepositar);
+                      if (valorDepositar < 0) {
+  						System.out.println("\nO valor para depósito não pode ser negativo. Tente novamente.");
+  						return; // Volta ao menu anterior sem alterar o saldo
+  					}
+
                       //Depositoconta.getSaldo();
                       System.out.println("Deposito de " + valorDepositar + " realizado com sucesso para o cliente " + getNome());
                       try (BufferedWriter writer = new BufferedWriter(
@@ -132,12 +143,80 @@ public class Cliente extends Usuario {
                   }
                 break;
 			case "3":
-				System.out.println("Digite o valor a ser transferido: R$");
-				double valor = sc.nextDouble();
-				//TODO conferir linha inferior
-				ContaCorrente destino = new ContaCorrente(escolha, valor, 0, null, valor);
-				transferir(valor,destino);
+				Conta contaOrigem = null;
+				ArrayList<Conta> transferenciaContas = Conta.listaConta();
+
+				// Obter a conta de origem do cliente
+				for (Conta t : transferenciaContas) {
+					if (this.getCpf().equals(t.getCpfTitular())) {
+						contaOrigem = t;
+						break; // Encontramos a conta, podemos parar o loop
+					}
+				}
+
+				// Verificar se a conta de origem foi encontrada
+				if (contaOrigem == null) {
+					System.out.println("Você não possui uma conta corrente.");
+					return; // Encerra a operação
+				}
+
+				// Solicitar CPF do destinatário
+				System.out.print("Digite o CPF do destinatário: ");
+				String cpfDestinatario = sc.next();
+
+				// Obter a conta do destinatário com base no CPF fornecido
+				Conta contaDestino = null;
+				for (Conta c : transferenciaContas) {
+					if (cpfDestinatario.equals(c.getCpfTitular())) {
+						contaDestino = c;
+						break; // Encontramos a conta de destino, podemos parar o loop
+					}
+				}
+
+				// Verificar se a conta de destino foi encontrada
+				if (contaDestino == null) {
+					System.out.println("Conta do destinatário não encontrada.");
+					return; // Encerra a operação
+				}
+
+				// Solicitar valor da transferência
+				System.out.print("Digite o valor a ser transferido: ");
+				double valorTransferencia = sc.nextDouble();
+
+				// Verificar se o valor de transferência é válido
+				if (valorTransferencia <= 0) {
+					System.out.println("Valor inválido. O valor para transferência deve ser maior que zero.");
+					return; // Encerra a operação
+				}
+
+				// Verificar se a conta de origem tem saldo suficiente
+				if (contaOrigem.getSaldo() < valorTransferencia) {
+					System.out.println("Saldo insuficiente para realizar a transferência.");
+					return; // Encerra a operação
+				}
+
+				// Realizar a transferência entre as contas
+				contaOrigem.sacar(valorTransferencia);
+				contaDestino.depositar(valorTransferencia);
+
+				// Mensagem de sucesso
+				System.out.printf("Transferência de R$ %.2f para %s realizada com sucesso!%n", valorTransferencia,
+						contaDestino.getCpfTitular());
 				
+				 try (BufferedWriter writer = new BufferedWriter(new FileWriter("..//projetoFinalJava/src/Relatorios/RelatorioTransferência", true))) {
+			            writer.write("\n *** Relatório de Transferência ***\n");
+			            writer.write("Transferência de " + valorTransferencia + " realizada com sucesso para " + contaDestino.getCpfTitular() + "\n");
+			            writer.write("Saldo disponível na conta de origem: " + contaOrigem.getSaldo() + "\n");
+			            writer.write("Saldo disponível na conta de destino: " + contaDestino.getSaldo() + "\n");
+			            writer.close();
+			        } catch  (IOException e) {
+			            e.printStackTrace();
+			            }
+				break;
+
+			
+		
+	
 			case "4":
 				// Volta ao menu principal
 				return;
@@ -224,9 +303,10 @@ public class Cliente extends Usuario {
 			
 			return resultado;
 		}
-		//InOutUtils.escritorCliente(getCpf(), null);
+	
 	}
 
+	
 	@Override
 	public void menuDiretor() {
 		// TODO Auto-generated method stub

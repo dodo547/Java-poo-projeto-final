@@ -29,6 +29,7 @@ public class Menu {
         System.out.println("\nParabéns você é um novo cliente do Serra bank!");
         
         Usuario.setUsuarios(novousuario);
+        
     }
 	
     public static void menuLogin() {

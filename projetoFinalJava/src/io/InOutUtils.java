@@ -1,7 +1,8 @@
 package io;
 
 	import java.io.*;
-	import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 	import java.util.Scanner;
 
 	import pessoas.Cliente;
@@ -11,12 +12,14 @@ import pessoas.Usuario;
 
 		String path = "..//projetoFinalJava/src/Relatorios/ListaClientes";
 		String pathRendimento = "..//projetoFinalJava/src/Relatorios/RendimentoPoupança";
+		String pathTransferencia = "..//projetoFinalJava/src/Relatorios/RelatorioTransferência";
 		
 	    // Método para ler clientes de um arquivo
 		
 		
 	    public static  HashMap<String, Cliente> leitorCliente(String path) throws IOException {
 	        HashMap<String, Cliente> clientes = new HashMap<>();
+	        
 	        
 	        
 	        // Usar o bloco try-with-resources para abrir o arquivo de forma segura
@@ -68,7 +71,20 @@ import pessoas.Usuario;
 	             
 	         }
 	  buffWrite.close();   
-	    }
 	    
-	   
+	    }
 	}
+//	    public static void escritorT(String path, HashMap<String, Cliente> clientes) throws IOException {
+//			BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+//			String linha = "";
+//			Scanner in = new Scanner(System.in);
+//			 for (Cliente cliente : clientes.values()) {
+//	             // Escrever cpf, senha e nome separados por vírgula
+//	             buffWrite.append(cliente.getCpf() + "," + cliente.getSenha() + "," + cliente.getNome());
+//	             buffWrite.newLine();
+//	             
+//	         }
+//	  buffWrite.close();   
+//	    }
+//	   
+	
