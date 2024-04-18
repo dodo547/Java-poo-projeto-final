@@ -1,9 +1,7 @@
 package pessoas;
 
 import java.util.Scanner;
-
 import enums.FuncionariosEnum;
-import sistemaInterno.SistemaInterno;
 
 public class Diretor extends Funcionario {
 
@@ -17,7 +15,7 @@ public class Diretor extends Funcionario {
         while (true) {
             System.out.println("\nMenu do Diretor:");
             System.out.println("1 - Relatório com informações de clientes em ordem alfabética.");
-            System.out.println("2 - Relatórios do sistema interno.");
+            System.out.println("2 - Acessar menu do Gerente.");
             System.out.println("3 - Sair.");
 
             int escolha = sc.nextInt();
@@ -25,15 +23,16 @@ public class Diretor extends Funcionario {
 
             switch (escolha) {
                 case 1:
-                    // Relatório com informações de clientes em ordem alfabética
-                    SistemaInterno.relatorioClientesOrdemAlfabetica();
+                    // Chama o método específico para gerar relatório com informações de clientes em ordem alfabética
+                    relatorioClientesOrdemAlfabetica();
                     break;
                 case 2:
-                    // Acessar os mesmos relatórios disponíveis ao gerente
-                    SistemaInterno.abrirRelatorios();
+                    // Cria uma instância de Gerente e chama o método menuGerente
+                    Gerente gerente = new Gerente(getCpf(), getSenha(), FuncionariosEnum.GERENTE, getNome(), 0);
+                    gerente.menuGerente();
                     break;
                 case 3:
-                    System.out.println("Saindo do menu do Diretor.");
+                    System.out.println("Encerrando Operação.");
                     System.exit(0);
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
@@ -41,26 +40,23 @@ public class Diretor extends Funcionario {
         }
     }
 
-    // Chama os relatórios disponíveis ao gerente
-    private void menuRelatoriosGerente() {
-        SistemaInterno.abrirRelatorios();
+    private void relatorioClientesOrdemAlfabetica() {
+        // Implementação do relatório com informações de clientes em ordem alfabética
+        System.out.println("Relatório com informações de clientes em ordem alfabética...");
     }
 
-	@Override
-	public void menuGerente() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void menuGerente() {
+        // Implementação do método menuGerente, caso necessário
+    }
 
-	@Override
-	public void menuPresidente() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void menuPresidente() {
+        // Implementação do método menuPresidente
+    }
 
-	@Override
-	public void menuCliente() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void menuCliente() {
+        // Implementação do método menuCliente
+    }
 }

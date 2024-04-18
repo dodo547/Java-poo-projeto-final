@@ -61,74 +61,102 @@ public class Cliente extends Usuario {
 
 			switch (escolha) {
 			case "a":
-				if (Usuario.getUsuarios() != null && Conta.listaConta() != null) {
-					ContaCorrente contaCorrente = null;
-					for (Conta conta : Conta.listaConta()) {
-						if (conta.getCpfTitular().equals(getCpf())) {
-							contaCorrente = (ContaCorrente) conta;
-							break;
-						}
-					}
+				sacar(custoOperacoes);
+                Conta conta = null;
+                ArrayList <Conta>contas = Conta.listaConta() ;
+                for(Conta c : contas) {
+                    if (this.getCpf().equals(c.getCpfTitular())) {
+                        conta = c;
+                    }
+                }
+                if (conta != null) {
+                        System.out.println( conta.getSaldo());
+                     System.out.print("Digite o valor a ser Sacado: ");
+                      double valorSacar = sc.nextDouble();
+                      conta.sacar(valorSacar);
+                      conta.getSaldo();
+                      System.out.println("Saque de " + valorSacar + " realizado com sucesso para o cliente " + getNome());
+                      try (BufferedWriter writer = new BufferedWriter(
+                              new FileWriter("../projetoFinalJava/src/Relatorios/RelatorioSaque" , true))) {
+                          writer.write("\n *** Relatório de Saque **\n");
+                          writer.write((int) valorSacar);
+                          writer.write("\nSaque de " + valorSacar + " realizado com sucesso para " + getNome() + "\n");
+                          writer.write((int) conta.getSaldo());
+                          writer.write("Saldo disponível :" + conta.getSaldo());
+                          writer.close();
+                      } catch (IOException e) {
+                          e.printStackTrace();
+                      }
 
-					if (contaCorrente != null) {
-						System.out.print("Digite o valor a ser Sacado: ");
-						double valorSacar = sc.nextDouble();
-						contaCorrente.sacar(valorSacar);
-						System.out.println(
-								"Saque de " + valorSacar + " realizado com sucesso para o cliente " + getNome());
-					} else {
-						System.out.println("Você não possui uma Conta Corrente.");
-					}
-				}
+
+                  } else {
+                      System.out.println("Você não possui uma Conta Corrente.");
+                  }
 				break;
 			case "b":
-				if (Usuario.getUsuarios() != null && Conta.listaConta() != null) {
-					System.out.print("Digite o valor a ser depositado: ");
-					double valorDeposito = sc.nextDouble();
-					System.out.println(
-							"Depósito de " + valorDeposito + " realizado com sucesso para o cliente " + getNome());
-				}
-				break;
-			case "c":
-				if (Usuario.getUsuarios() != null && Conta.listaConta() != null) {
-					ContaCorrente contaCorrenteOrigem = null;
-					ContaCorrente contaCorrenteDestino = null;
+				depositar(custoOperacoes);
+                Conta Depositoconta = null;
+                ArrayList <Conta>Depositocontas = Conta.listaConta() ;
+                for(Conta c : Depositocontas) {
+                    if (this.getCpf().equals(c.getCpfTitular())) {
+                        Depositoconta = c;
+                    }
+                }
+                if (Depositoconta != null) {
+                        System.out.println( Depositoconta.getSaldo());
+                     System.out.print("Digite o valor a ser Depositado: ");
+                      double valorSacar = sc.nextDouble();
+                      Depositoconta.sacar(valorSacar);
+                      Depositoconta.getSaldo();
+                      System.out.println("Deposito de " + valorSacar + " realizado com sucesso para o cliente " + getNome());
+                      try (BufferedWriter writer = new BufferedWriter(
+                              new FileWriter("../projetoFinalJava/src/Relatorios/RelatorioSaque" , true))) {
+                          writer.write("\n *** Relatório de Saque **\n");
+                          writer.write((int) valorSacar);
+                          writer.write("\nSaque de " + valorSacar + " realizado com sucesso para " + getNome() + "\n");
+                          writer.write((int) Depositoconta.getSaldo());
+                          writer.write("Saldo disponível :" + Depositoconta.getSaldo());
+                          writer.close();
+                      } catch (IOException e) {
+                          e.printStackTrace();
+                      }
 
-					// Encontrar a conta corrente do usuário logado
-					for (Conta conta : Conta.listaConta()) {
-						if (conta.getCpfTitular().equals(getCpf())) {
-							contaCorrenteOrigem = (ContaCorrente) conta;
-							break;
-						}
-					}
 
-					if (contaCorrenteOrigem != null) {
-						System.out.print("Digite o CPF do destinatário: ");
-						String cpfDestinatario = sc.next();
-
-						// Encontrar a conta corrente do destinatário
-						for (Conta conta : Conta.listaConta()) {
-							if (conta.getCpfTitular().equals(cpfDestinatario)) {
-								contaCorrenteDestino = (ContaCorrente) conta;
-								break;
-							}
-						}
-
-						if (contaCorrenteDestino != null) {
-							System.out.print("Digite o valor a ser transferido: ");
-							double valorTransferencia = sc.nextDouble();
-
-							// Realizar a transferência
-							contaCorrenteOrigem.transferir(valorTransferencia, contaCorrenteDestino);
-
-						} else {
-							System.out.println("Conta do destinatário não encontrada.");
-						}
-					} else {
-						System.out.println("Você não possui uma Conta Corrente.");
-					}
-				}
-				break;
+                  } else {
+                      System.out.println("Você não possui uma Conta Corrente.");
+                  }
+//			case "c":
+//				sacar(custoOperacoes);
+//                Conta conta = null;
+//                ArrayList <Conta>contas = Conta.listaConta() ;
+//                for(Conta c : contas) {
+//                    if (this.getCpf().equals(c.getCpfTitular())) {
+//                        conta = c;
+//                    }
+//                }
+//                if (conta != null) {
+//                        System.out.println( conta.getSaldo());
+//                     System.out.print("Digite o valor a ser Sacado: ");
+//                      double valorSacar = sc.nextDouble();
+//                      conta.sacar(valorSacar);
+//                      conta.getSaldo();
+//                      System.out.println("Saque de " + valorSacar + " realizado com sucesso para o cliente " + getNome());
+//                      try (BufferedWriter writer = new BufferedWriter(
+//                              new FileWriter("../projetoFinalJava/src/Relatorios/RelatorioSaque" , true))) {
+//                          writer.write("\n *** Relatório de Saque **\n");
+//                          writer.write((int) valorSacar);
+//                          writer.write("\nSaque de " + valorSacar + " realizado com sucesso para " + getNome() + "\n");
+//                          writer.write((int) conta.getSaldo());
+//                          writer.write("Saldo disponível :" + conta.getSaldo());
+//                          writer.close();
+//                      } catch (IOException e) {
+//                          e.printStackTrace();
+//                      }
+//
+//
+//                  } else {
+//                      System.out.println("Você não possui uma Conta Corrente.");
+//                  }
 			case "d":
 				// Volta ao menu principal
 				return;

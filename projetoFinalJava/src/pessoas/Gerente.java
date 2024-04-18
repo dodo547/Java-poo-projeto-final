@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import enums.FuncionariosEnum;
-import sistemaInterno.SistemaInterno;
+//import sistemaInterno.SistemaInterno;
 
 public class Gerente extends Funcionario {
     private int agenciaResponsavel;
@@ -63,7 +63,7 @@ public class Gerente extends Funcionario {
                     menuRelatoriosGerente();
                     break;
                 case 5:
-                    System.out.println("Saindo do menu do Gerente.");
+                    System.out.println("Encerrando Operações.");
                     System.exit(0);
                 default:
                     System.out.println("Opção inválida. Tente novamente.");

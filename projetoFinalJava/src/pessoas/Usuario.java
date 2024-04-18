@@ -1,6 +1,7 @@
 package pessoas;
 import java.util.HashMap;
 
+import contas.ContaCorrente;
 import enums.FuncionariosEnum;
 
 
@@ -8,25 +9,47 @@ public abstract class Usuario {
 	private String cpf;	
     private String senha;
     private String nome;
-	
-	
-	public String getCpf() {
-		return cpf;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public String getNome() {
-		return nome;
-	}
-	
+    double saldo;
+    public double custoOperacoes = 0;
+   
 	
 	public Usuario(String cpf, String senha, String nome) {
 		super();
 		this.cpf = cpf;
 		this.senha = senha;
 		this.nome = nome;
+		this.saldo = saldo;
 	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+
+
+
 	public static void setUsuarios(HashMap<String, Usuario> usuarios) {
 		Usuario.usuarios = usuarios;
 	}
@@ -60,11 +83,56 @@ public abstract class Usuario {
 	    public static HashMap<String, Usuario> getUsuarios() {
 	        return usuarios;
 	    }
-	    public abstract void menuCliente();
 	    
+	    public void depositar(double valor) {
+	        double custoDeposito = 0.10; // Custo de R$0,10 por depósito
+	        if (valor > 0) {
+	            saldo += (valor - custoDeposito);
+	            custoOperacoes += custoDeposito;
+	        }
+	    }
+
+	    public void sacar(double valor) {
+	        double custoSaque = 0.10; // Custo de R$0,10 por saque
+	        
+			if (valor > 0 && saldo >= valor + custoSaque) {
+	            saldo -= (valor + custoSaque);
+	            custoOperacoes += custoSaque;
+	        } else {
+	            System.out.println("\nSaldo Insuficiente!!. \nOperaçao Cancelada");
+	        }
+	    }
+
+	    public void transferir(double valor, ContaCorrente destino) {
+	        double custoTransferencia = 0.20; // Custo de R$0,20 por transferência
+	        if (valor <= 0) {
+	            System.out.println("Valor inválido para transferência.");
+	            return;
+	        }
+	        if (saldo < valor + custoTransferencia) {
+	            System.out.println("Saldo insuficiente para realizar a transferência.");
+	            return;
+	        }
+	        if (destino.getCpfTitular().equals(this.getCpf())) {
+	            System.out.println("Você não pode transferir dinheiro para a mesma conta.");
+	            return;
+	        }
+	        saldo -= (valor + custoTransferencia);
+	        custoOperacoes += custoTransferencia;
+	        destino.depositar(valor);
+	        System.out.println("Transferência de " + valor + " realizada com sucesso!");
+	    }
+
+
+		public void exibirSaldo() {
+	        System.out.printf("Saldo atual: R$%.2f%n", saldo);
+	    }
+
+	    public abstract void menuCliente();
+
 	    public abstract void menuDiretor();
 
-		public abstract void menuGerente();
+	    public abstract void menuGerente();
 
-		public abstract void menuPresidente();
+	    public abstract void menuPresidente();
 }

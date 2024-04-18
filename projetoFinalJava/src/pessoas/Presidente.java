@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import enums.FuncionariosEnum;
 import contas.Conta;
-import sistemaInterno.SistemaInterno;
+
+//import sistemaInterno.SistemaInterno;
 
 public class Presidente extends Funcionario {
 
@@ -49,15 +50,17 @@ public class Presidente extends Funcionario {
 
 			case 2:
 				// Acessar os relatórios disponíveis ao DIRETOR
-				SistemaInterno.relatorioClientesOrdemAlfabetica();
+				Diretor diretor = new Diretor(getCpf(), getSenha(), FuncionariosEnum.DIRETOR, getNome());
+                diretor.menuDiretor();
 				break;
 			case 3:
-				// Acessar os relatórios disponíveis ao GERENTE
-				menuGerente();
+				// Cria uma instância de Gerente e chama o método menuGerente
+                Gerente gerente = new Gerente(getCpf(), getSenha(), FuncionariosEnum.GERENTE, getNome(), 0);
+                gerente.menuGerente();
+                break;
 				
-				break;
 			case 4:
-				System.out.println("Saindo do menu do Presidente.");
+				System.out.println("Encerrando Operação.");
 				System.exit(0);
 				;
 			default:
@@ -90,9 +93,6 @@ public class Presidente extends Funcionario {
 
 	@Override
 	public void menuGerente() {
-		// TODO Auto-generated method stub
-		pessoas.Gerente pg = new pessoas.Gerente(getCpf(), getSenha(), cargo, getNome(), 0);
-		pg.menuGerente();
 	}
 
 	@Override
