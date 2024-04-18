@@ -4,7 +4,10 @@
 ### Ministrado por Marcelo Collares.
 
 ##### Participantes
+<<<<<<< HEAD
 
+=======
+>>>>>>> e37fcd1884b1f5014cec8df9a84589ebd4a98a91
 * Douglas tapajóz Lima
 * Felipe Amorim Ferreira Mauriz
 * Patrick dos Santos Lopes
